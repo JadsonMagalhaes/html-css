@@ -1,0 +1,46 @@
+﻿<DockSiteLayout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SerializationFormat="ToolWindowsOnly" Version="2">
+	<AutoHideHost>
+		<AutoHideTabStrip Side="Right">
+			<ToolWindowContainer SelectedWindowUniqueId="fd06699b-732b-49b3-986a-40fcaf3120d3">
+				<UIElement xsi:type="ToolWindowRef" UniqueId="fd06699b-732b-49b3-986a-40fcaf3120d3" />
+			</ToolWindowContainer>
+		</AutoHideTabStrip>
+	</AutoHideHost>
+	<Content xsi:type="SplitContainer" Orientation="Horizontal" DockedSize="1328.04,656">
+		<UIElement xsi:type="SplitContainer" Orientation="Vertical" DockedSize="200,406">
+			<UIElement xsi:type="Workspace">
+				<Content xsi:type="TabbedMdiHost">
+					<Content xsi:type="TabbedMdiContainer" SelectedWindowUniqueId="b69a6c39-5498-4cbd-8a9d-2cbd367c4abb" />
+				</Content>
+			</UIElement>
+			<UIElement xsi:type="ToolWindowContainer" DockedSize="200,558" SelectedWindowUniqueId="de8e3764-c081-411d-8271-04139f467e2e">
+				<UIElement xsi:type="ToolWindowRef" UniqueId="de8e3764-c081-411d-8271-04139f467e2e" />
+				<UIElement xsi:type="ToolWindowRef" UniqueId="45027b20-29c6-4f64-b823-81d1bdc2f476" />
+				<UIElement xsi:type="ToolWindowRef" UniqueId="0385d7c1-c453-4018-ad12-81edf56cd962" />
+				<UIElement xsi:type="ToolWindowRef" UniqueId="7e0cefcf-32aa-492c-be38-4962450c5f47" />
+				<UIElement xsi:type="ToolWindowRef" UniqueId="d75db9ee-df41-4c2b-8227-db2f920246be" />
+				<UIElement xsi:type="Track" ContainerDockedSize="200,558" CreationDateTime="2022-12-12T10:10:48.0314953-03:00" UniqueId="9eb972c0-a46b-484c-96a5-84c899b22ac8" />
+			</UIElement>
+		</UIElement>
+		<UIElement xsi:type="SplitContainer" Orientation="Vertical" DockedSize="200,406">
+			<UIElement xsi:type="ToolWindowContainer" DockedSize="0,0">
+				<UIElement xsi:type="Track" CreationDateTime="2022-12-17T22:11:50.4765963-03:00" UniqueId="fd06699b-732b-49b3-986a-40fcaf3120d3" />
+			</UIElement>
+			<UIElement xsi:type="ToolWindowContainer" SelectedWindowUniqueId="b353ecf0-4f8d-4282-bb8d-89081c422981">
+				<UIElement xsi:type="Track" CreationDateTime="2022-12-17T22:11:52.3089508-03:00" UniqueId="0bb2bf56-3519-42dd-ba45-523f1f7dee95" />
+				<UIElement xsi:type="ToolWindowRef" UniqueId="b353ecf0-4f8d-4282-bb8d-89081c422981" />
+			</UIElement>
+		</UIElement>
+	</Content>
+	<ToolWindows>
+		<ToolWindow UniqueId="de8e3764-c081-411d-8271-04139f467e2e" SerializationId="342773ed-4dfa-4f83-97aa-159d5733dfe0" Name="ToolWindowCheatTable" ContainerDockedSize="200,558" IsOpen="true" LastActiveDateTime="2022-12-18T22:02:40.2892979-03:00" State="Docked" Type="-.l1ilI1Illi1i1, Cosmos" />
+		<ToolWindow UniqueId="45027b20-29c6-4f64-b823-81d1bdc2f476" SerializationId="dcb5d742-bb50-4fc7-968f-586e71ef1f33" Name="ToolWindowLog" ContainerDockedSize="200,558" IsOpen="true" LastActiveDateTime="2022-12-16T23:18:58.0733558-03:00" State="Docked" Type="-.l11ll1li1II1l, Cosmos" />
+		<ToolWindow UniqueId="0385d7c1-c453-4018-ad12-81edf56cd962" SerializationId="72685b87-6294-411a-919d-66a7d606c076" Name="ToolWindowLuaLog" ContainerDockedSize="200,558" IsOpen="true" State="Docked" Type="-.l1il1Ilillill, Cosmos" />
+		<ToolWindow UniqueId="7e0cefcf-32aa-492c-be38-4962450c5f47" SerializationId="103103e8-a302-471b-bcec-9cb858a8818f" Name="ToolWindowBookmarks" ContainerDockedSize="200,558" IsOpen="true" State="Docked" Type="-.l1I11IIIiiIi, Cosmos" />
+		<ToolWindow UniqueId="d75db9ee-df41-4c2b-8227-db2f920246be" SerializationId="426ae6cb-be22-4db0-9941-e58f6dade729" Name="ToolWindowBreakpoints" ContainerDockedSize="200,558" IsOpen="true" State="Docked" Type="-.l1I1II1iI11Ii, Cosmos" />
+		<ToolWindow UniqueId="9eb972c0-a46b-484c-96a5-84c899b22ac8" SerializationId="d5372967-dfc1-47f3-a543-d4742f0569ac" Name="ToolDumpViewer" IsOpen="false" State="Docked" Type="-.lili11lI1iIi, Cosmos" />
+		<ToolWindow UniqueId="fd06699b-732b-49b3-986a-40fcaf3120d3" SerializationId="9c5e31a6-ff69-4526-9e64-5c5f67e47b47" Name="ToolWindowSolutionExplorer" IsOpen="true" LastActiveDateTime="2022-12-15T23:02:43.4143421-03:00" State="AutoHide" Type="-.ii1iiI1II1Ii, Cosmos" />
+		<ToolWindow UniqueId="0bb2bf56-3519-42dd-ba45-523f1f7dee95" SerializationId="3873a397-d384-409f-a1a3-447c2356ec4f" Name="ToolWindowProperties" IsOpen="false" State="Docked" />
+		<ToolWindow UniqueId="b353ecf0-4f8d-4282-bb8d-89081c422981" SerializationId="aa6af271-9a14-48ab-be95-7c9f462a6192" Name="ToolWindowTargetProcessProperties" IsOpen="true" LastActiveDateTime="2022-12-17T23:21:35.5237081-03:00" State="Docked" Type="-.i1Ili1i111i1, Cosmos" />
+	</ToolWindows>
+</DockSiteLayout>

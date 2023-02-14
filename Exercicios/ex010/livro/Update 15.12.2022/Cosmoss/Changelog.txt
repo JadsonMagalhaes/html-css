@@ -1,0 +1,2432 @@
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 6.1.2
+-------------------------------------------------------------------------------------------------------
+
+General
+[~] Updated sub modules
+
+Mono Engine:
+[+] When dumping il2cpp the symbol addresses of all methods are now added so you can for example use 'Player:Update' everywhere as usual
+
+Script Engine:
+[~] When looking for a free trampoline address it also recognizes variantions such as define(trampoline2,$process+500)
+[!] Fixed address alignment is applied on FAR jmps when it shouldn't
+
+[Aob/Value] Scanner:
+[+] Also accepts if a wildcard is just '?' instead of '??'
+[!] Fixed an issue with region sizes > 0x7FFFFFFF
+
+LUA Engine:
+[~] 'readStatic' now supports retrieving the destination of a 'call' opcode
+
+.NET Assembly Viewer:
+[~] Added a small delay before the search kicks in
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 6.1.1
+-------------------------------------------------------------------------------------------------------
+
+General:
+[!] Fixed mono detection is skipped when .NET has been detected first
+[!] Fixed mono features not working on games using Unity Version 2022
+
+Debugger:
+[!] Fixed debugger not receiving initial breakpoint signal
+
+Script Engine:
+[~] Allow to ignore breaking control flow on return instructions in script generator
+[!] Fixed 'readstatic' has not returned the correct address in rare scenarios
+[!] Fixed strings were accidentally tokenized
+
+Value Scanner:
+[!] Fixed a possible NRE
+
+.NET Assembly Viewer:
+[~] Updated il2cpp dumping features to support more versions
+
+LUA Engine:
+[+] Added 'getFileVersion' API
+[+] Added 'getMainModule' API
+[+] Added 'createThread' API
+[+] Added 'writePointer' API
+[+] Added 'splitDisassembledString' API
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 6.1.0
+-------------------------------------------------------------------------------------------------------
+
+General:
+[+] Added current cosmos table name to window title
+[~] Updated to .NET 6
+[~] Non handled exception messageboxes only appear up to 25 times per session preventing messagebox spam
+[~] Updated sub modules
+
+Disassembly Viewer:
+[~] Improved speed for creating scripts on address nearby unallocated memory
+[!] Fixed comments
+[!] Fixed error on creating a script on address just before unallocted memory
+[!] Fixed rare crash when scrolling through the list while the disassembler is busy otherwise
+
+Script Engine:
+[+] Added 'isvalidptr()' API
+[+] When a symbol (memory location) is accessed by an instruction, Cosmos will automatically align the memory location now
+[~] When finding unique aob fails, it returns the aob with the smallest number of results (best possible aob) instead of just the aob of the original code
+[~] Assert accepts the byte array to be a symbol
+
+Options:
+[+] Added option to disable mono injection
+[+] Added option to disable .NET injection
+
+Lua Engine:
+[+] Added 'freezeProcess' API
+
+Bitwise Calculator:
+[+] Can be closed now by pressing ESC
+[+] Holding down SHIFT while pressing Ctrl+(D/H) changes the format of all fields at once
+
+Assembly Bytes Converter:
+[+] Can be closed now by pressing ESC
+
+.NET Assembly Viewer:
+[+] Added 'Is Public' property to fields
+[+] Added 'Is Static' property to methods
+[+] Added 'Show Static Addresses' to context menu of methods with public & static fields
+
+Mono Engine:
+[!] Fixed mono pipe crash when getting signature of a method
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 6.0.9
+-------------------------------------------------------------------------------------------------------
+
+General:
+[!] Fixed CE table pointer imports
+
+Disassembly Viewer:
+[~] Selected items now remain selected when they are out of view
+[~] Improved instruction comment generation by showing more numbers especially float values
+[!] Fixed selection + scroll bug
+
+Script Engine:
+[~] Global allocation symbols are now registered
+[!] Fixed an issue with script template generation
+
+Symbol Engine:
+[~] Add support for PDB files with a different name, i.e. 'game.exe' and 'game_steam.pdb'
+[~] Include loading PDB symbols which flags are not set as FUNCTION
+
+Bitwise Calculator:
+[+] Added hotkeys to toggle between decimal and hexdecimal
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 6.0.8
+-------------------------------------------------------------------------------------------------------
+
+Beginner:
+[+] Added search box to the window title area
+[+] Added new waiting screen when attaching to a process
+[!] Fixed value search
+[!] Fixed changing value in scanner tab is not updating the value in the list
+
+General:
+[+] Added an option which changes your theme based on your Windows 10 theme, on by default
+[~] Updated darktheme.vs file
+[!] Fixed DLL injection causes specific unity engine games to crash
+
+Cheat Table:
+[!] Fixed rare exception on clicking 'Copy' in table test window when Windows clipboard is unaccessible
+
+Script Editor:
+[~] Negative offsets in instructions are now wildcarded by default no matter of their size (script generation)
+[~] Instructions with negative offsets are now replaced with readmem() in script generation
+[!] Fixed missing RET original instruction on script generation
+[!] Fixed some multi comment characters in instruction comments
+
+Symbol Engine:
+[+] Added search box to filter class fields
+[~] Improved performance by 7x by switching to a managed pdb reader
+[~] Improved performance on class enumeration
+[~] Improved results on class enumeration
+[!] Fixed loading PDB from file is executed twice
+[!] Fixed loading PDB from file was missing class enumeration
+
+Handles Viewer:
+[~] Greatly speed up enumerating handles
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 6.0.7
+-------------------------------------------------------------------------------------------------------
+
+General:
+[+] Runs on .NET 5
+[+] Implemented Windows 10's SegmentHeap feature (Windows 10 2004 and later)
+[+] Added support for long paths (Windows 10 1607 and later)
+[+] Added parenthesis support for address parsing
+[+] Added support for nested and multiple brackets for address parsing
+[+] Added new 'Tools' menu item
+[~] Speed up DotNet features a bit by ignoring GAC assemblies
+[~] Warns if allocated memory is smaller than expected
+[!] DotNet features no longer crashes the game when Cosmos get closed first
+[!] Fixed Cosmos crashing when a DotNet game gets closed while Cosmos is attached
+[!] Fixed Cosmos crashing when a Unity engine game gets closed while Cosmos is attached
+[!] Fixed the issue where connecting to the mono pipe fails on UWP games
+[!] Fixed an exception on reading RTTI struct
+
+Cheat Table:
+[+] Added option to disable register variation search on table test
+[~] Improved speed of aborting table test
+[~] Toggling/Enabling/Disabling scripts via context menu now waits for each script to complete before continue
+[!] Fixed size of the ring spinner
+
+Debugger:
+[~] Changed log level from error to warning when failing to get/set thread context
+[!] Fixed an issue with handling unexpected breakpoints
+[!] Fixed 'delete icon' size in 'find out' window
+
+Assembler:
+[~] Be more clear about 2GB range failure
+[!] Fixed several minor issues
+
+Disassembler:
+[!] Fixed several minor issues
+
+Script Editor:
+[~] Intellisense is now based on the current language (LUA apis won't show up in assembly language and vice versa)
+[~] In AA script injection generation the whole function is now stored the script comment if possible
+[!] Fixed parameter info provider sometimes shows wrong function name
+
+Bitwise Calculator:
+[+] Initial release
+
+Script Engine:
+[+] Added support for using module+offset on aobscanmodule API
+[!] Fixed script exception handler
+
+Diassembly Viewer:
+[+] Added FAR jmp script injection templates
+[+] The code flow of script injections with more than one original instruction is now validated
+[+] Protected DotNet methods are now named in disassembly view
+[~] Moved assembly->byte converter to main window 'tools' menu
+
+.NET Assembly Viewer:
+[+] Cosmos now automatically jits the correct method when there are multiple with the same name
+[+] Added 'Copy Method Signature' context menu item
+[+] Added 'Copy Full Qualified Name' context menu item
+[~] Loading an invalid PE file no longer appears as error in log but as a warning instead
+[!] Prevent you from jitting or invoking abstract methods which results in a game crash
+[!] Fixed wrong address path generation on .NET targets
+[!] Fixed wrong address path generation on Il2cpp when mono pipe is used
+
+Symbol Viewer:
+[!] Fixed searching within custom symbols
+
+LUA Engine:
+[+] Added 'mono_findAOBInMethods' API
+[+] Added 'mono_method_getSignature' API
+[+] Added 'mono_findMethodBySignature' API
+[+] Added 'mono_compileMethod' API
+[+] Added 'writeBytes' overload API which accepts a hexdecimal string as byte array
+[+] Added compatibility to CE's 'donotsave' parameter on 'registerSymbol' API which no longer raises an exception but 'donotsave' value will be ignored
+[~] Changed all 'write' APIs to automatically change memory protection of the target address if necessary
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 6.0.6
+-------------------------------------------------------------------------------------------------------
+
+General:
+[~] Detect and warn if game uses MonoGame framework
+[~] Updated sub modules
+[~] Huge performance improvements when game is using DotNet in several places
+
+Value Scanner:
+[~] Changed the way values are refreshed
+[~] Improved scan speed and memory usage on lots of scan results
+
+Diassembly Viewer:
+[+] Added Left CTRL + Left click to quick navigate (follow call / jmp)
+[+] Added option to highlight a word, for example 'rax' (View -> Highlight word)
+[~] Improved auto comment logic
+[~] Replace with NOPs now replaces the instruction with a multibyte nop instruction if possible
+[~] On auto refresh it stays at the current address instead of the address where a change was detected
+[~] When copying lines the comment is now included
+[!] Fixed missing tooltip on indirect calls
+[!] Fixed several issues with indirect calls using a register like 'call rax'
+
+Script Editor:
+[~] The instruction comments are now included in AA script injection generation
+
+Reference Scanner:
+[~] Improved string scanner by including instructions with immediates which are indirect strings
+
+Modules Viewer:
+[~] Removed search delay
+
+Memory Regions Viewer:
+[~] Removed search delay
+
+Target Process View:
+[+] Added info about the target process bitness
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 6.0.5
+-------------------------------------------------------------------------------------------------------
+
+General:
+[+] Added detection if game uses Game Maker engine
+[~] Updated sub modules
+[!] Fixed a crash when enumerating Microsoft assemblies on a unity target
+[!] Fixed an issue where il2cpp dumping would have failed
+[!] Fixed mono dll injection fails on Max Gentlemen
+
+Diassembly Viewer:
+[+] Readded comment column with improved auto comment feature and auto update
+[+] Added own syntax highlighting for CALL instructions
+[~] Mouse hover preview now supports indirect calls / jmps
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 6.0.4
+-------------------------------------------------------------------------------------------------------
+
+General:
+[!] Fixed hotkeys (for real)
+
+Beginner:
+[~] Increased max speedhack value on overdrive from 100 to 1000
+
+Options:
+[+] Added an option to deactivate global hotkeys
+
+Diassembly Viewer:
+[+] (Re)added mouse hover preview of call/jmp memory locations back from Cosmos <v3 era
+[+] Added go to current function start/end
+
+Reference Scanner:
+[~] Improved string scanner by including stack related instructions, i.e. PUSH 0x12345
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 6.0.3
+-------------------------------------------------------------------------------------------------------
+
+General:
+[+] Added .NET Collector support for 32bit targets
+[+] Improved DLL injection into UWP processes which are running in a restrictive sandbox
+[!] Fixed hotkeys
+
+Scan Engine:
+[!] Fixed display of byte array scan results
+
+Cheat Table:
+[+] Added search table items
+[!] Fixed attach message regression on table test from 6.0.2
+
+Script Editor:
+[+] Added LUA code (un)comment support when using buttons or hotkeys
+
+Script Engine:
+[~] If fails to assemble and target is 64bit, it gives a hint of possible 2GB range exceeded
+
+.NET Assembly Viewer:
+[+] Added selected word highlighting
+[~] Executables are now added as well if target is a .NET process
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 6.0.2
+-------------------------------------------------------------------------------------------------------
+
+General:
+[+] Added support for .NET games
+[~] More several small GUI improvements
+[~] Performance improvements when parsing addresses
+[!] Fixed loading some very early v5 cheat tables
+[!] Fixed an issue where some memory regions are unnessecarily scanned
+
+Beginner Version:
+[+] Added changing value of selected table items at once
+[+] Added changing description of selected table items at once
+[!] Fixed some missing translations
+
+Scan Engine:
+[!] Fixed string search
+[!] Fixed finding AOB in some very specific cases
+
+Cheat Table:
+[+] Added option to test selected items only
+[~] Improved finding new injection spot logic on test table
+[~] Improved test table feedback result if error is not caused by AOB scan
+[~] Table test no longer auto start when opened
+
+Script Engine:
+[~] Script execution now waits for symbolhandler in case its busy
+[!] Fixed 'label not defined' error when definition line ends with spaces
+[!] Fixed line gets assembled to a multi-nop instruction under rare circumstances
+[!] Fixed globalalloc command may throw "too many/less parameters" exception
+[!] Fixed indexing AOBscan APIs can be out of order
+
+Attach To Process Window:
+[+] Added message when Cosmos runs without administrator rights
+
+Diassembly Viewer:
+[+] Generating AOB scripts is now running asynchronous
+
+Symbol Viewer:
+[+] Added option to manually load a PDB file
+[+] Added RTTI Scanner
+[+] Added custom symbols
+
+.NET Assembly Viewer:
+[+] Added remotely invoke method
+[+] Added option to rebuild assemblies from memory instead of loading files from disk
+[+] Added support for .NET games
+[+] Added an ignoreable message whether to auto add assemblies to the list
+[!] Fixed going back/forth or from find references dialog not focus/select the target item
+
+Mono Engine:
+[!] Fixed il2cpp fails when export symbols are stripped
+[!] Fixed an issue where retrieving a method address failed if the same classname exist in two different assemblies
+
+Structure Dissect:
+[+] Added RTTI information
+[!] Fixed pointer detection
+
+Patch Scanner:
+[+] Detects and warns about using it on packed files
+[!] Fixed an out of range exception
+
+LUA:
+[+] Added mono_findMethods API
+[+] Added loadPDBFile API
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 6.0.1
+-------------------------------------------------------------------------------------------------------
+
+General:
+[~] Several small GUI improvements
+
+Script Editor:
+[+] Added support for higlighting selected decimal value
+
+Lua Editor:
+[+] Added autocomplete
+[+] Added word highlighter
+[+] Added snippet support
+
+Diassembly Viewer:
+[+] Added support to follow indirect Calls/Jumps
+
+Patch Scanner:
+[+] Added support to save patches to file
+[+] Added menu item to restore original bytes
+[~] Preselects main process module
+
+References Search:
+[~] Improved logic to filter out false positives
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 6.0.0
+-------------------------------------------------------------------------------------------------------
+BREAKING CHANGES:
+[~] 'Space' key in disassembly viewer now follows calls/jumps instead of reassemble instruction
+
+IMPORTANT CHANGES:
+[~] Cosmos now runs fully on .NET Core 3.1
+[~] Added hardware acceleration all over the place (on average 4x faster on modern CPUs)
+[~] Improving CE table import by adding support of $ hex decimal notation in script parser 
+[+] Added hotkey support for table entries
+[+] Added support for il2cpp games including dumping to disk and obfuscated metadata
+[+] By default the scanner reads memory in chunks decreasing the memory usage at costs of scan duration, can be deactivated in settings
+[~] Heavily reduced reference search scan time (-30%) & memory usage (-92%)
+[~] Beginner version is now included and gets the same improvements on every update
+
+
+General:
+[+] Cosmos now runs fully on .NET Core 3.1
+[+] Added find instructions scanner
+[+] Added Ctrl+Shift+E to open a new script editor
+[+] Added Ctrl+Shift+M to open a new disassembly viewer
+[+] Added File -> Recent Files
+[+] Added detection of Unreal Engine games
+[+] Added an About window
+[+] Added Autorun folder for lua scripts
+[~] Updated documentation
+[~] Updated submodules
+[~] Increased the resize border width
+[~] Errors in log now also contains the win32 message
+[~] Added tab window relationships to improve behavior on custom tab layouts
+[!] Fixed a rare issue with address parsing on unity targets
+[!] Fixed finding aobs beyond 0x7fffffff on 32bit targets
+
+Attach To Process Window:
+[+] Loads processes in background now
+[+] Added CTRL+F to set keyboard focus to search
+[+] Auto select first process that has the same process name as the previously attached
+[+] If not attached previously it will try auto select the process stored in cheat table
+[~] Several minor improvements
+
+Hotkeys:
+[!] Fixed handling scan hotkeys when no scan tab is opened
+
+Scan Engine:
+[+] Enabled hardware acceleration for AVX2 (with fallback to SSE4.2) supported processors
+[+] By default the scanner reads memory in chunks decreasing the memory usage at costs of performance, can be deactivated in settings
+[+] Plays a sound when triggered by hotkeys to let you know when its done
+[~] AOB scan is ~20% faster
+
+Cheat Table:
+[+] Added hotkey support for table entries
+[+] Saving cheat table now suggests target process name as file name
+[+] Added support for drag dropping cheat table files onto it
+[+] Last attached process name is now stored in table
+[~] Improved finding new aobs on cheat table testing
+[~] Test table window is no longer on top by default
+[!] Fixed a rare crash on cheat table test
+[!] Fixed importing of table with pointer addresses
+[!] Fixed focus border around active checkbox
+
+Script Engine:
+[+] Added writing of unicode strings via -> dw 'myUnicodeString'
+[+] Added optional parameter for aob APIs to define the taken index of scan results
+[+] Added support for try-except which has been added to CE 6.8
+[+] Added syntax highlighting for 0x hex decimal notation
+[+] Added validation of symbol names
+[+] Added support for $ hex decimal notation as API parameter
+[~] Improved the way NOPs are generated
+[~] Generated script injections will use module instead of symbol address in comment
+[~] Several performance improvements on parsing speed
+[~] Generated script injections with use $process if injection is within main module
+[!] Fixed an issue with anonymous labels were not parsed correctly in some cases
+[!] Fixed an issue where readoffset doesn't work on AOB symbols within the same script
+[!] Fixed allocxo and allocnx not setting proper memory protections
+[!] Fixed several minor issues
+[!] Fixed fullaccess failed if address is part of a define API
+[!] Fixed issue with calling readmem and providing a large size parameter value
+[!] Fixed $process variable usage fails in some scenarios
+[!] Fixed 'call MonoClass:MonoMethod'
+[!] Fixed a parsing issue when a module name contains a bracket
+
+Debugger:
+[+] Added delete selected items as context menu to find out what windows
+[+] Added debug mode to options
+[~] Heavily improved performance of 'lots of BP hits' per second
+
+Assembler:
+[+] Added support for multi NOPs
+[+] Added support for r8b-r15b
+
+Mono Engine:
+[~] Some small performance improvements
+[!] Fixed retreiving class structure rarily crashed the pipe connection
+
+Module Engine:
+[!] Fixed main module may appear twice in list on 32bit targets
+
+Script Editor:
+[+] Added support for multi selection / multi caret via CTRL+click
+[+] Added syntax highlighting for some missing AVX instructions
+[+] Added option to set a background image
+[~] Heavily improved the search window
+[~] Updated intellisense for some LUA APIs
+[~] Word wrap mode is now saved / restored
+[~] Reduced the default allocation size from 2048 to 1024
+[~] Improved finding unique AOB, now also supports to skip PUSH/MOV 32/64 address
+[~] Shows now an error message if it fails to insert a symbol or label
+[!] Fixed an issue using find aob shortcut when word wrap is active
+[!] Fixed 'Find aob' context menu item not appear when line is wrapped
+[!] Title not gets updated when script description is changed in cheat table
+
+Diassembly Viewer:
+[+] Added auto complete history to 'Go to address' window
+[+] Added trampoline script injection templates
+[+] Added nop script injection templates
+[+] Added go to file RVA
+[+] Added CTRL+C as hotkey for copy whole line
+[~] Removed the 'Add to log' checkbox from 'Go to address' window
+[~] Fill memory tool now accepts hex decimal byte input
+
+Dump View:
+[~] Optimized performance of highlighting value changes
+
+References Search:
+[+] Added a progress bar
+[+] Added search module by typing
+[~] Module list is now sorted by module name
+[~] Heavily reduced scan time (-50%) & memory usage (-92%)
+[!] Fixed failing to find some address references such as lea xxx,[xxxxxx]
+
+Symbols View:
+[+] Added symbol classes structure view
+[+] Added copy address / symbol context menu items
+[+] Added wildcard support for filtering
+[~] Heavily improved the search / filter speed
+[~] Loading symbols is slightly more faster
+
+Find Instructions View:
+[+] Initial release
+
+Find AOB View:
+[+] Added search module by typing
+[~] Module list is now sorted by module name
+[~] Preselects the main module of the target process when opened unless another module is specified
+[!] Fixed failing on negative offsets on mono addresses
+[!] Fixed some spacing issues with region text fields
+
+.NET Assembly Viewer:
+[+] Added support for il2cpp games
+[+] Added more system modules to blacklist
+[+] Added find references for classes
+[+] You can jump to visible items by typing their name
+[+] Added open in disassembler for 'Find uses' items
+[+] Added full path as a comment to the top of the decompiled source code
+[+] Added property getter / setter to the list
+[!] Fixed not resetting search when using 'Go To' menu item
+[!] Fixed memory leaks
+
+Thread View:
+[+] Added kill thread context menu item
+[+] Added go to thread entry address context menu item
+[!] Fixed sometimes retreiving thread context failed
+
+Speedhack:
+[~] Improved injection speed
+[!] Fixed rare situation where speed had no effect
+[!] Fixed injection failed on some processes by adding manual map as fallback injection method
+
+LUA:
+[+] Added startProcess API
+[+] Added writeBytesToFile API
+[+] Added writeStringToFile API
+[+] Added appendBytesToFile API
+[+] Added appendStringToFile API
+[+] Added readBytesFromFile API
+[+] Added readStringFromFile API
+[+] Added changeProtection API
+[+] Added enableNetwork LUA API
+[+] Added disableNetwork LUA API
+[+] Added writeBit LUA API
+[+] Added readBit LUA API
+[+] Added tohex LUA API
+[+] Added getInstructionSize LUA API
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Advanced Changelog 5.1.3
+-------------------------------------------------------------------------------------------------------
+
+Debugger:
+[+] Added stack view for breakpoints
+[+] Moved register view into 'find out what' windows
+[!] Fixed a bug introduced in 5.1.1 where attaching debugger fails
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Advanced Changelog 5.1.2
+-------------------------------------------------------------------------------------------------------
+
+Scanner:
+[!] Fixed a bug where AOB scan might fail in specific situations
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Advanced Changelog 5.1.1
+-------------------------------------------------------------------------------------------------------
+
+Cheat Table:
+[+] Added option to cancel opening table
+
+Scanner:
+[+] Added possibility to filter scan results without rescanning
+[*] First scan speed for primitive data types (byte -> double) is now about 200% faster
+[*] Rescan speed for primitive data types (byte -> double), where first scan was UNKNOWN value is now about 160% faster
+[*] (Re)Scan speed for float / double without exponents is now about 30% faster
+[*] Array of byte scan is now about 230% faster
+[*] Memory usage optimizations
+
+Test Explorer:
+[+] Added button to toggle always on top
+
+LUA:
+[+] Added readPointer API
+[+] Added whileKeyIsDown API to run a lua script in a loop while a key is being held down
+[+] All read/write APIs now also accept the address in Int64 format besides in hex string
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Advanced Changelog 5.1.0
+-------------------------------------------------------------------------------------------------------
+
+General:
+[+] Added global hotkeys
+[+] Added an option to disable performance logging
+[+] Added visual indicator when symbols are still being loaded
+[+] Added -p/--pid command line argument to attach to process by its PID
+[+] Added -pn/--process-name command line argument to attach to process by its name
+[+] Added -t command line argument to launch a cheat table script test
+[~] Updated submodules
+[~] Cosmos Advanced is now out of beta
+[!] Fixed an issue with parsing mono adresses with offset addition like Class:Method+5+1
+
+Scanner:
+[+] Added a new rescan method: Realistic (filters out values that last change is unrealistic for values that matter)
+[!] Fixed several minor issues
+
+Documentation:
+[+] Initial release of Cosmos Advanced 5 documentation
+
+Cheat Table:
+[!] Fixed an issue with traversing through child items
+[!] Fixed isdirty flag for child items
+
+Test Explorer:
+[+] Initalize release
+[+] Get notified when an AOB in your script is no longer unique
+[+] Get notified about possible updated offsets when your AOB is outdated
+
+Disassembly Viewer:
+[+] Added disassembly / byte converter tool
+[+] Added replace with NOPs context menu item
+[!] Fixed module gets not selected when opening find aob although it should be
+
+Dump Viewer:
+[!] Fixed module gets not selected when opening find aob although it should be
+
+Script Engine:
+[!] Fixed comment removal taken place in LUA sections
+[!] Registered symbols are no longer case sensitive
+[!] Script fails when accessing a registered symbol from another script as memory pointer
+[!] Fixed syntax check fails on registering allocation symbol
+[!] Fixed issue with assert API sometimes failed to accept byte arrays as parameter
+
+Lua Editor:
+[!] Lua exceptions are now caught
+
+Lua:
+[+] Added sendKey API
+[+] Added keyDown API
+[+] Added keyUp API
+[+] Added sleep API
+[+] Added writeSmallInteger API
+[+] Added readSmallInteger API
+[+] Added mono_findMethod API
+[+] Added mono_method_getClass API
+[+] Added mono_invoke_method API
+[+] Added remaining APIs to syntax highlighter
+[!] Fixed setting speedhack value may fail on some machines when value has a floating point
+[!] Fixed an issue with multiline scripts failed in autoAssemble API
+
+Lua Log Window:
+[~] Can now be closed
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Advanced Changelog 5.0.9
+-------------------------------------------------------------------------------------------------------
+
+General:
+[~] Checking for updates failure now gives a warning instead of an error
+
+Cheat Table:
+[+] Added copy items with CTRL+C to clipboard
+[+] Added paste CheatEngine and Cosmos tables with CTRl+V from clipboard
+[+] Added toggle active status of selected items with CTRL+E, C
+[!] Fixed import of some early Cosmos 4 tables
+
+Scanner:
+[+] Added selecting start / end address from module
+[~] Around +20% faster scan speed and -18% memory usage (Measured on 1.000 iterations, 15.000.000 scan results per iteration)
+[!] Fixed errors on scanning for signed data types
+[!] Fixed not finding aob when aob starts with wildcard
+[!] Fixed an issue with filtering values with exponents
+
+Debugger:
+[+] Added changing register values
+[+] Added support for adding data breakpoints via breakpoint view
+[+] Added an option to break at unexpected exceptions
+[~] Performance improvements for stepping into/over
+[!] Fixed several issues with stepping over
+
+Script Engine:
+[+] Added script description to errors if available
+[+] Added support for reassemble
+[~] Aobscan templates uses readmem now to eliminate repetitive code changes when AOB has changed, can be turned off in settings
+[!] Fixed an issue when preferred allocation address is a symbol within the script
+[!] Fixed wrong 'cannot be compiled' error in rare circumstances
+[!] Fixed failed to find aob on mono targets although its valid in very specific circumstances
+
+Symbol Handler:
+[~] Invalid symbols where the memory address or size is 0 are now skipped on loading
+
+Log View:
+[+] Tab header flashes now if an error occured
+
+Script Editor:
+[+] When directly injecting a script with an allocation you will be asked if you want to go there
+[~] Search window now stays open when clicked outside
+
+Memory Viewer:
+[+] Added fill memory tool
+[~] Range fields in find aob window now trigger scan when return key is pressed
+[~] Increased range fields with
+[~] Increased width of disassembler view's address column
+[~] Split dump view from disassembler and moved it into its own tool window
+[~] Memory Viewer has been renamed to disassembly viewer
+[!] Fixed debug register view may fill up whole width
+
+Dump Viewer:
+[~] Improved the way changes are highlighting so it no longer highlights them when you scroll or go to an address
+
+Breakpoint View:
+[+] Added DEL as hotkey to remove breakpoints
+
+.NET Assembly Viewer:
+[~] Search window now stays open when clicked outside
+[!] Fixed showing structure may fail on sub class targets
+
+Lua Editor
+[+] Initialize release
+
+Lua:
+[+] Added lua log window (when you don't see it, go to Windows -> Lua)
+[+] Added LaunchMonoDataCollector API
+[+] Added mono_enumDomains API
+[+] Added mono_findClass API
+[+] Added mono_class_getStaticFieldAddress API
+[+] Added unregisterSymbol API
+[+] Added registerSymbol API
+[+] Added getNameFromAddress API
+[+] Added allocateMemory API
+[+] Added deAlloc API
+[+] Added getPreviousOpcode API
+[+] Added loadTable API
+[+] Added saveTable API
+[+] Added openProcess API
+[+] Added getProcesslist API
+[+] Added enumModules API
+[+] Added inModule API
+[+] Added support for address parameters in decimal format
+[~] Moved lua log into its own log viewer
+
+Structure Dissect:
+[+] Added change description of selected items
+
+Speedhack:
+[!] Fixed crash on some games
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Advanced Changelog 5.0.8
+-------------------------------------------------------------------------------------------------------
+
+General
+[~] Updated submodules
+[!] Fixed minor memory leaks
+[!] Fixed issues with unexpected tab placement / switching under specific circumstances
+
+Scanner:
+[~] Improved scan speed on scans with lots of scanning results, e.g. >100.000 results up to 40% faster
+
+Cheat Table:
+[+] Added option to duplicate items
+[!] Fixed an issue with editing address item description
+
+Script Engine:
+[+] Added line number to LUA exceptions
+[~] Improved AOB search string generation for AOB injections
+[~] Increased range of generating injection location comment
+[~] Formatted addresses in injection location comment are now based on your settings
+[!] Fixed generating injection location comment rarily screwed up
+
+Memory Viewer:
+[~] Formatted address in find AOB window is now based on your settings
+
+.NET Assembly Viewer:
+[+] Added clear context menu item in find references window
+
+Assembler:
+[!] Fixed issue with assembling strings
+
+Disassembler:
+[!] Fixed for some instructions symbol wasn't resolved, such as for calls or jumps
+
+Debugger:
+[+] Detaching debugger tries to cleanup existing breakpoints now
+[+] Added option to open 'Find Out' as floating windows instead of docked
+[+] Added copy context menu items in 'Find Out' windows
+[~] Displaying FPU in fixed-point format in register view
+[!] Fixed some issues with 32bit targets
+
+Structure Dissect:
+[+] Added option to change values
+[+] Added option to delete selected items
+
+Speedhack:
+[~] Minor improvements
+[!] Fixed unnessary messagebox when attaching to a new process while speedhack was active
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Advanced Changelog 5.0.7
+-------------------------------------------------------------------------------------------------------
+
+Main:
+[+] Added common redistributable folder
+
+Scanner:
+[!] Fixed float 'value between' fails at certain conditions
+[!] Fixed hex value is marked as invalid on hex data types
+[!] Fixed hex scan shows values in non hex format
+
+Debugger:
+[+] Added floating registers for 32bit targets
+[+] Added copy register context menu item in register view
+[+] Added target address to register view
+[+] Added FPU to register view
+[+] Added message if attaching debugger fails because of .NET core runtime is missing
+[~] Aligned register view content
+[!] Fixed EDI/RDI register was missing in register view
+[!] Fixed freeze on attaching debugger for the second time to the same running target
+[!] Fixed when closing CoSMOS 'unloading' VEH failed when target is still running
+[!] Fixed various issues with debugging unity games
+
+Mono Engine:
+[+] Added support for read / write timeouts
+[~] Heavily improved reliability 
+[~] Non representable data types (i.e. object, vectors, arrays ...) in structures are now shown as pointers
+[!] Fixed resolving unity structure ends in a disconnect in some situations
+[!] Fixed reconnecting to target failed in some situations
+[!] Fixed freeze in rare situation when target process is not reachable, i.e. frozen.
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Advanced Changelog 5.0.6
+-------------------------------------------------------------------------------------------------------
+
+Solution Explorer:
+[+] Added context menu items to open or open in explorer
+
+Scanner:
+[+] Static addresses in scan results are now highlighted
+[~] Scanning for unknown values now also shows the scan progress
+
+Cheat Table:
+[~] 'Active' column auto grows in width when expanding nodes
+[~] Pointer offsets are now string addresses which allows the usage of symbols
+[!] Fixed import of CE tables
+[!] Fixed several issues with pointer items
+
+Script Editor:
+[~] Revert intellisense shown on word start by default
+
+Dissect Structure:
+[+] Added change value type context menu item and shortcut
+
+Debugger:
+[+] Added flags to disassembler debugger register view
+[~] Double click on 'Find out' item adds it to cheat table instead of showing it in dump
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Advanced Changelog 5.0.5
+-------------------------------------------------------------------------------------------------------
+
+Main:
+[+] Started documentation for Cosmos Advanced v5
+[!] Fixed FileLoadException on start on some machines 
+
+Cheat Table:
+[~] Items active state now resets when attaching to another process
+
+Dissect Structure:
+[+] Added browse in dump context menu
+[+] Added browse in disassembler context menu
+[+] Added copy addresses in context menu
+[+] Added copy values in context menu
+
+Script Editor:
+[~] Dragged text & file content is now inserted as text change giving you the possibility for undo
+[~] Dragged text content is also now inserted at cursors position
+[!] Fixed globalalloc intellisense tooltip
+[!] Fixed some script error descriptions were misleading
+
+Script Engine:
+[+] Added support for globalalloc
+[+] Fixed an issue with some jump memory spaces being filled with invalid opcodes instead of nops
+
+Memory Viewer:
+[~] When opening a new find AOB window the current module is automatically selected
+[~] Optimized rendering performance, especially noticeable in dump view and on older computer
+
+Debugger:
+[+] Fixed disassembler stepping in 32bit targets
+[~] 'Find out what addresses this instruction accesses' now tries to guess the possible value type based on the instruction and preselects it for you
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Advanced Changelog 5.0.4
+-------------------------------------------------------------------------------------------------------
+
+Main:
+[+] Started implementation of LUA support
+[~] Embedded the few lines used code from dnlib in order to remove whole library reference
+
+Script Editor:
+[+] Added lua syntax highlighting, only applied to {$lua} marked regions
+[+] Added file / text drag drop support
+[+] Added new snippet for luatimer
+[~] Intellisense is now shown while typing, can be turned off in settings
+
+Options:
+[+] Added script editor option to show intellisense on word start option (default true)
+[+] Added script editor option to open as floating window (default false)
+
+Memory Viewer:
+[+] Debug registers are now properly shown and named based on the bitness of the target process
+
+Disassembler View:
+[~] Scrolling through opcodes is now much smoother especially when scrolling up
+
+Debugger:
+[!] Fixed current debugged instruction highlighting was wrong in few moments
+
+Lua:
+Following global variables have been added:
+[+] process
+[+] syntaxcheck
+Following methods / functions have been added:
+[+] getAddress
+[+] getAddressSafe
+[+] monoAA_USEMONO
+[+] autoAssemble
+[+] autoAssembleCheck
+[+] showMessage
+[+] targetIs64Bit
+[+] readFromClipboard
+[+] writeToClipboard
+[+] isKeyPressed
+[+] createTimer
+[+] AOBScan
+[+] AOBModuleScan
+[+] AOBRegionScan
+[+] getModuleSize
+[+] getModuleBase
+[+] speedhack_setSpeed
+[+] speedhack_getSpeed
+[+] writeBytes
+[+] writeSmall
+[+] writeInteger
+[+] writeQword
+[+] writeFloat
+[+] writeDouble
+[+] writeString
+[+] readBytes
+[+] readSmall
+[+] readInteger
+[+] readQword
+[+] readFloat
+[+] readDouble
+[+] readString
+[+] getCEVersion (returns high number, added only for compatibility reasons)
+Do nothing, added only for compatibility reasons:
+[+] enableDRM
+[+] activateProtection
+[+] errorOnLookupFailure
+[+] loadTable
+[+] saveTable
+[+] copyMemory
+[+] writeRegionToFile
+[+] readRegionFromFile
+[+] resetLuaState
+[+] reloadSettingsFromRegistry
+[+] getSymbolInfo
+[+] reinitializeSymbolhandler
+[+] reinitializeDotNetSymbolhandler
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Advanced Changelog 5.0.3
+-------------------------------------------------------------------------------------------------------
+
+Main:
+[+] Added option to disable check for updates in settings
+
+Scanner:
+[+] Added bits value validation
+[~] Slightly improved initial scan speed and optimized memory management
+[~] Heavily improved rescan speed and optimized memory management
+[!] Fixed issues with string / array of bytes search
+
+Script Editor
+[+] Added format document / selection with own formatting logic taking care of your disassembler settings
+[!] Fixed address injection template on 64bit targets
+[!] Fixed issue with stripping multi line comments
+
+Dump Viewer:
+[+] Added highlighting for changed values (can be turned off in settings)
+
+Debugger:
+[+] Added disassembler StepOver
+[+] Added disassembler breakpoint condition
+[~] Adjusted debug register view in disassembler
+
+Reference Search:
+[!] Fixed 'Open in' buttons
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Advanced Changelog 5.0.2
+-------------------------------------------------------------------------------------------------------
+
+Main:
+[~] Simplified log message when checking for updates has failed
+[!] Fixed checking for updates may fail in some situations
+
+Scanner:
+[+] Added open in disassembler context menu item for scan results
+[+] Added open in dump context menu item for scan results
+[+] Added copy address context menu item for scan results
+[+] Added hotkey for adding selected results to cheat table
+[~] Removed undo button as its without function at the moment
+
+Script Editor:
+[~] Its now possible to replace search results with an empty string
+
+Disassembler:
+[+] Added some rare AMD instructions
+[!] Fixed copied address is formatted
+
+Dump Viewer:
+[!] Fixed copy address hotkey
+[!] Fixed edit hotkey
+
+Debugger:
+[+] Added first implementation of disassembler debugger (currently single stepping only)
+[~] Several internal improvements
+[!] Fixed several cleanup issues when dealing with more than one breakpoint
+[!] Fixed only last set breakpoint get hit
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Advanced Changelog 5.0.1
+-------------------------------------------------------------------------------------------------------
+
+Main:
+[!] Fixed double click to jump to an address in disassembler view sometimes hasn't set focus
+
+Cheat Table:
+[!] Fixed exception when renaming description via double click on others than address items
+
+Debugger:
+[+] Added 'find out what addresses this instruction accesses' in disassembler viewer context menu
+[~] Moved floating registers in BP properties view to its own category
+[!] CS segment was falsely in flag category instead of segment category
+
+Find References:
+[+] Added double click to jump to it in disassembler view
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Advanced Changelog 5.0.0
+-------------------------------------------------------------------------------------------------------
+
+This release contains hundres of changes and new features but major focus for this release was on performance and stability.
+Most core elements have been rewritten to support multi threading and running asynchronous. Elements which were 
+previously written in unmanaged code are now directly integrated into CoSMOS. The design has been improved to be more flexible
+and responsive. Also many bugs have been fixed and many suggestions have been added according to your feedback, like a VEH debugger.
+
+BREAKING CHANGES:
+- Requires SSE2 compatible processors (if you are using Windows 10, then your processor supports it).
+- Namespaces in mono are combined with a '.' now instead of a '+'.
+- You will need lots of RAM now as scan results are not saved to disk, this may change in future version.
+
+Main:
+[+] CoSMOS Advanced is now portable
+[+] Added project tool window
+[+] Added memory region viewer
+[+] Added thread viewer
+[+] Added handle viewer
+[+] Added find address references
+[+] Added overall item property window
+[+] Added bookmarks window
+[+] Added breakpoint window
+[+] Added unicode support for dll injections
+[+] Added menu item to kill target process
+[+] Added search for cheats online
+[+] Added confirmation prompt on exit
+[+] Added unique tool windows for some elements which visible state will be saved
+[+] Added support for opening Cheat Engine tables via commandline (or open with)
+[+] Added menu item to restart CoSMOS with administrator rights
+[~] New application icon
+[~] Application icon has multi size support
+[~] All icons are now SVG, supports high DPI and change colors depending on the current theme
+[~] Extended the logging
+[~] Various engines run asynchronously now
+[~] Experience levels have been removed. Beginners should use CoSMOS Beginner instead
+[~] All dialoges and messages are now centered
+[~] Value data type names have changed
+[~] The attach button is now flashing until Cosmos has been attached
+[~] No longer insists on administrator rights, you're responsible to start it with admin rights yourself if necessary
+[~] Restarting Cosmos will remain same command line parameters it was started with
+[~] Checking only once per day for updates instead on every launch
+[!] Layout is now correctly saved and restored
+
+Project Window:
+[+] Initial release
+
+Cheat Table:
+[+] Added proper parent/child support
+[+] Added option to collapse/expand all items
+[+] Added copy/paste of items
+[+] Added copy hex address context menu item
+[+] Added copy value context menu item
+[+] Added browse in disassembler context menu item
+[+] Added visual feedback if address is valid
+[+] Added visual feedback if value is valid
+[+] Added group items
+[+] You can edit items directly in the new item property window
+[~] Inline editing is now only triggered by double click
+[~] Has been moved to its own unique window
+[~] To edit a script it only takes a single left click now
+[~] Improved support for importing nested CE table items
+[!] Fixed all issues with item dragging / nested items
+
+Debugger:
+[+] Switched to VEH debugger
+[+] Debugger is now written in pure C#
+[+] x64 and x86 debugger now directly integrated into CoSMOS
+[+] Added segments 
+[+] Added bit flag resolver for eflags
+[+] Added floating registers
+[+] Added syntax highlighting to 'find out ...' windows
+[~] Heavily improved performance and stability
+[~] No longer requires TitanEngine
+
+Breakpoint Window:
+[+] Initial release
+
+Scanner:
+[+] Core Scanner is now written in pure C#
+[+] No longer writes scan results to disk (SSD friendly)
+[+] Added option for writeable, executable, copyonwrite and mapped regions to be part of scan or not
+[+] Added 'Not Equal' scan type
+[+] Added visual feedback if scan value is valid for value type
+[+] Added visual feedback for start/end address is valid
+[+] Added SSE hardware acceleration
+[+] Added support for exponential value search
+[~] Heavily improved performance on showing scan results
+
+Memory Viewer:
+[+] Added endless scrolling
+[+] Added jump direction markers
+[+] Added dynamic zoom in/out
+[+] Added visual feedback if new opcode can be assembled
+[+] Added auto refresh
+[+] Same theme and syntax highlighting as the script editor
+[+] Fully resolves nested mono methods now (e.g. Namespace.Mainclass+Subclass:Method instead of Class:Method)
+[+] Added visual feedback if search string in aob finder is valid
+[+] Results in search aob finder now shows both, raw address and formatted
+[+] Added visual feedback if it has keyboard focus
+[+] Added visual indiciator if dump / disassembler view has keyboard focus
+[+] Added preferred protection for memory allocation
+[+] Added create thread menu option
+[~] Stop after first result in aob finder has been removed, define start/end if you wish to limit results
+[~] Removed font setting
+[~] Find aob scan performs async
+[~] Memory allocation has a dialog now instead of a couple messageboxes
+[!] Improved auto generating comment field
+[!] Fixed synchronizing opcode/dump viewer sometimes failed
+[!] Fixed finding unique aob for non-module/non-region
+
+Disassembler:
+[+] Disassembler is now written in pure C#
+[+] Added option to show leading zeros
+[+] Added option to show values as signed
+[+] Added option to show hex in upper case
+[+] Added option to show mnemonics in upper case
+[+] Added option to show registers in upper case
+[+] Added option to show keywords in upper case
+[+] Added option to add spaces between memory add operators
+[+] Added option to add space after operand separators
+[+] Added option show memory size
+[~] Improved support for symbol renaming and resolving rip relatives
+[~] No longer requires Capstone
+
+Go To Address Dialog:
+[+] Added visual indicator if the entered address is valid
+[+] Added go to RVA
+[~] History has been removed
+
+Dump Viewer:
+[+] Added endless scrolling
+[+] Added byte group separator
+[+] Added option to show relative offsets
+[+] Added option to create a bookmark
+[+] Added 8 Bits view
+[+] Added tooltip showing address of element under cursor
+[+] Added auto highlight equal values
+[+] Added auto refresh
+[+] Added multi selection
+[+] Added selection highlight for both, ascii and value fields
+[+] You can edit ascii
+[+] Shows protection state of current region
+[+] Shows base address of current region
+[+] Shows region size of current region
+[+] Shows module name of current region
+[+] Added dynamic zoom in/out
+[+] Added visual feedback if it has keyboard focus
+[+] Added left click on current region info panel brings you to the base address
+[+] Added change page protection context menu item
+[~] Removed font setting
+
+Script Editor:
+[+] Cheat script engine is now written in pure C#
+[+] Introducing code snippets (See snippets folder or enter 'header' and press TAB)
+[+] Added proper intellisense
+[+] Added toggles for the types of intellisense suggestions
+[+] Added intellisense items for mono class
+[+] Added command parameter tooltips
+[+] Added proper word auto complete
+[+] Added command tooltip provider
+[+] Added hotkey to select whole word
+[+] Added comment/uncomment menu item
+[+] Added delete line menu item
+[+] Added lots of character casing options
+[+] Added delimiter highlight
+[+] Added line modification highlight
+[+] Added white case highlight
+[+] Added tabify menu item
+[+] Added line indent menu item
+[+] Added duplicate line menu item
+[+] Added delete blank lines menu item
+[+] Added some trim whitespace menu items
+[+] Added collapse definitions menu item
+[+] Added save as menu item
+[+] Added ruler menu item
+[+] Added white space visible menu item
+[+] Added word wrap menu item
+[+] Added word wrap glyph visible menu item
+[+] Added zoom, replacing the old font size settings
+[+] Added line/column/character status bar items
+[+] Added error list
+[+] Added outlining of comment code blocks
+[+] Added automatically check for script compile errors as you type
+[+] Added syntax highlighting for mnemonics
+[+] Added syntax highlighting for script commands
+[+] Added option to define size of inserted snippets (label/symbol)
+[+] Added option to define the value of inserted snippets (label/symbol)
+[+] Added support for CE 6.8.1 allocnx command
+[+] Added support for CE 6.8.1 allocxo command
+[+] Added readoffset command to read and defines offsets
+[+] Added readstatic command to read a memory pointer
+[+] You will get ask for aob symbol name when creating a new script
+[+] Find and replace window instantly searches as you type now
+[+] Find and replace window gives feedback whether a result has been found
+[+] Find and replace window highlights results in script
+[+] Inserting a snippet offers current text selection as default value
+[~] Save button gives a feedback about script has unsaved changes
+[~] Confirmation on close is now only requested if the scrip contains unsaved changes
+[~] The find and replace window is now an overlay
+[!] Fixed syntax highlighting for some floating registers
+[!] Fixed highlight selected word sometimes not disappear on deselection
+[!] Fixed syntax highlighting for floating registers
+
+Add/Edit Table Item Dialog:
+[+] Rewritten from scratch
+[+] When adding new items the initial window has been reduced to minimum
+[+] The value field now updates immediately when changing a property
+[+] You get a visual feedback if the entered address is valid
+
+Bookmarks Window:
+[+] Initial release
+
+Process List:
+[+] Added dialog window, window and process list are now combined
+[+] Added showing commandline of running processes
+[+] Added filter by text
+[+] Added refresh button and hotkey
+
+Symbol Viewer:
+[+] All symbols are now shown instantly without any delay
+[+] Symbol list refreshes automatically
+[+] Added symbol flags
+[+] Added symbol size
+[+] Added symbol size of struct
+[+] Added symbol tag
+[+] Added symbol module base
+[+] Added a button to reload symbols
+
+Module Viewer:
+[+] Added module size
+[+] Added module path
+[+] Module list refreshes automatically
+[+] You can dump a process module to disk
+[+] You can open a process module in file explorer
+[+] View extended information in the new item property window
+[+] Added a button to reload modules from target process
+
+Mono:
+[+] Most parts run now asynchron, which greatly improves speed of attaching to process
+[+] Can properly handle nested classes with name existing more than once inside an assembly
+
+.NET Assembly Explorer
+[+] Assemblies are now loaded async
+[+] Source code is now loaded async
+[+] Methods now shows their parameter in treelist
+[+] Methods and fields now show their return type in treelist
+[+] Added blacklist of assemblies to prevent loading them by default
+[+] Added regions in source code
+[+] Added structure items of sub classes 
+[+] Added class names to reference search results
+[+] Added syntax highlighting to reference search
+[+] Added context menu item to find references of selected item in references list
+[~] Avoid adding duplicated assemblies to list
+[~] Word wrap is disabled by default
+[~] Decreased initialization time
+[~] Decreased time of loading a dll file
+[~] Icons are now different for each theme to fit dark/white themes
+[!] Fixed navigating history sometimes not working correctly
+[!] Fixed finding references sometimes missing references
+[!] Fixed resolving path for nested classes inside namespaces
+[!] Fixed find uses sometimes missed references
+
+Structure Dissect:
+[+] Added auto value refreshing
+[~] All fields are now expandable. No need to change type to pointer first
+[~] Value type is now always shown (even when a custom description has been set)
+[~] Fallback to native structure if target uses mono and expanding pointer does not contain a .NET structure
+[!] Fixed pointing to wrong address on multiple columns
+
+String Reference Search:
+[+] Runs asynchronously now
+[+] Added option to search only within a specific range
+[~] Improved scan speed
+
+Address Reference Search:
+[+] Initial release
+
+Settings:
+[+] Added option to set CoSMOS as default program for .cosmos files
+[+] Added option to set CoSMOS as default program for .ct files
+
+Memory Region Viewer:
+[+] Initial release
+
+Threads Viewer:
+[+] Initial release
+[+] You can suspend threads
+[+] You can resume threads
+[+] You can view the context structure of a thread
+
+Handles Viewer:
+[+] Initial release
+[+] You can close a handle
+
+Symbol Handler:
+[+] Runs now asynchron
+[+] Written in pure C# now
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 4.0.3.0
+-------------------------------------------------------------------------------------------------------
+
+Scanner:
+[~] Re-enabled grouping
+[~] Description and type is set for adding new stored items 
+[~] Process name for saving table is now remembered even after process has been closed 
+[!] Fixed reported exception when column filter is raised in stored items 
+[!] Fixed reported exception when modifying a value in rare situations 
+[!] Fixed opening some cheatengine tables have failed
+
+Memory Viewer:
+[!] Fixed reported exception when switching to another process in some cases
+
+Pointer Scanner:
+[!] Fixed reported exception when adding pointer to list
+
+String References:
+[!] Fixed some cases where references were not found 
+[!] Fixed exception on jumping to address if no memory viewer has been activated
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 4.0.2.0
+-------------------------------------------------------------------------------------------------------
+
+Main:
+[!] Fixed reported crashes started with 4.0
+
+Scanner:
+[~] Replaced lock/unlock icon with SVG image which automatically fit itself to the selected theme 
+[!] Fixed exception when value of stored item cannot be parsed 
+[!] Fixed edit value context menu item not working 
+[!] Fixed rare crash on adding very large amount of scan results
+
+Memory Viewer:
+[~] You can now cancel the process when editing an opcode with less size than original opcode 
+[!] Fixed exception on opcode editing 
+[!] Fixed exception on dump view editing if value is hex
+
+Structure Dissect:
+[!] Fixed an issue with wrong address on +2nd columns
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 4.0.1.0
+-------------------------------------------------------------------------------------------------------
+
+Main:
+[+] Added Korean language
+[~] Added more SVG icons
+[~] Auto switch to scanner for beginners if a process is selected and welcome page is still shown 
+[!] Fixed a crash on exit when the Settings folder inside CoSMOS has been removed on runtime
+
+Scanner:
+[+] Added show signed property to stored items 
+[+] You can now group by values 
+[!] Fixed some controls are not properly enabled/disabled at certain situations 
+[!] Fixed editing stored items are applied immediately without a chance to cancel 
+[!] Fixed editing stored item hex property not applying 
+[!] Fixed string types were missing for stored items 
+[!] Fixed advanced scan settings were visible for beginners
+
+Memory Viewer:
+[~] Re-added jmp, call, ret syntax highlighting
+
+Structure Dissect:
+[~] Re-added context menu
+[!] Re-added multi selection
+
+Feedback:
+[~] Added a neutral feedback option
+
+
+CoSMOS Changelog 4.0.0.0
+
+Installer:
+[+] Installs required VC++ redistributables if they are missing [~] Create desktop icon is now checked by default (for new installations)
+
+Main:
+[+] Added CH theme (default for new users) 
+[+] Heavily reduced startup time if you have many tabs opened on start due to deferred load 
+[+] Every customization to controls (menu bars, scan results / stored item list etc.) is now saved and restored automatically 
+[+] You can fully customize the menu bars 
+[+] Replaced many icons with SVG images to improve high DPI and different theme support 
+[+] Added confirmation dialog when closing a tab which can be bypassed by holding shift key or turned off in settings 
+[+] Added custom notes and global log 
+[+] Added Turkish language and updated existing language files 
+[!] Fixed reported exception that might have been occurred when opening windows calculator within CoSMOS 
+[!] Fixed possible freeze on mono games
+
+Settings:
+[+] Added an option to change the language 
+[!] Fixed reported crash when processes to exclude list is empty
+
+Debugger:
+[!] Fixed a wrong address sometimes appear in find out what windows
+
+Scanner:
+[+] Reworked design
+[+] Adding scan results is +50% faster comparing to CoSMOS 3.4.1 
+[+] Added reset buttons to several controls 
+[+] You can now change the value of scan results without adding them to stored item list first 
+[+] Added translation support for scan and value types 
+[+] Added history of searched values 
+[+] Table save path is now remembered (when opening / saving) 
+[+] Added option to merge table on import/load instead of overwrite 
+[+] Improved enumeration option, you can now define the modifying value and if decreased or increased 
+[!] Fixed issue with failed script injection does not clean up properly 
+[!] Fixed layout issues with some translations
+
+Structure Dissect:
+[+] Reworked design, featuring database structure, grouping and much more
+
+Memory Viewer:
+[~] Reworked design
+[~] Added full featured debugger
+[~] Added live update of dump viewer
+[~] Improved Go To Address list and its auto complete 
+[~] Find Aob dialog now remembers the searched aob strings 
+[~] Find Aob dialog is now sizeable 
+[~] When using right click to select a row the row is now highlighted making it easier to see to which row the popup menu belongs to 
+[!] Fixed switching localization may cause font size to be extra large
+
+Script Editor:
+[+] Added support for mono symbols in aobscan commands 
+[+] You can open intellisense now even if no character has been typed (to see all available commands) 
+[~] Auto insert symbols will now take last 'jmp return' as identifier. This fixes issues where you call that twice in code and its getting inserted after first 
+[~] When auto insert a snippet and the target location cannot be found, it will insert the code at the current caret position instead 
+[~] Improved readability of templates 
+[!] Removed duplicated entries in intellisense 
+[!] Fixed switching localization may cause font size to be extra large 
+[!] Fixed aborting aob region injection dialogs cannot be cancelled
+
+Assembly Explorer:
+[+] Added support for finding usage of fields 
+[+] You can delete nodes in usage list now by pressing delete key 
+[+] Added a button to collapse all nodes except the selected 
+[+] Added type behind field names 
+[+] Added double click on usage search item jumps to it 
+[+] Added source code decompile for whole class if selected 
+[+] Added structure export of classes 
+[+] Added show instances of classes 
+[~] Show vertical scrollbar 
+[~] Pressing next/back button now clears the search if active 
+[!] Fixed find usage does not select the result instead expanding nodes in assembly explorer
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 3.4.0.0
+-------------------------------------------------------------------------------------------------------
+
+Main:
+[+] Added a .NET assembly explorer (similar to DnSpy / IlSpy / Reflector) which can be used to browse source code in Unity games. Moreover you can directly jump to its memory location 
+[+] Updated DevExpress to version 17.1 
+[+] Added native DevExpress translations for Italian and Chinese Simplified 
+[+] Added a button to restart CoSMOS 
+[+] Added hotkeys to various buttons 
+[~] Updated Documentation 
+[~] Values are shown as unsigned by default now 
+[~] Improved performance here and there 
+[~] Use mono jitter menu item has been put out of sub menu to make it easier to see if its active or not 
+[~] Windows calculator is now automatically opened in developer/programmer mode when launched in CoSMOS and also centered on CoSMOS 
+[!] Removed debug leftover button 
+[!] Fixed a couple of minor memory leaks in various places 
+[!] Fixed a couple of minor bugs in various places
+
+Debugger:
+[+] Highlight used registers in 'Find out what addresses this instruction accesses' context menu
+
+About:
+[+] Reworked design makes it easier to see to whom we give credits and which third party we uses
+
+Settings:
+[+] Reworked navigation
+
+Scanner:
+[+] Started implementation of custom information inside saved tables (started with a check that notifies when the saved table was created by a newer CoSMOS version) 
+[+] Added a new button next to advanced options to reset them to default 
+[~] If you activate a script and the script has child nodes it will be expanded automatically now and vice versa if you deactivate it 
+[~] Reset scan button no longer resets advanced options, use new button instead 
+[~] Realigned advanced options to better fit available space 
+[~] If you double click in the value field and the selected node is a script it opens the content in a script editor now 
+[!] Fixed debugger context menu items disappear in some circumstances 
+[!] Fixed item property of unicode string turns into array of bytes type
+
+Script Editor:
+[+] Added intellisense (auto complete/suggest the typed word based on your symbol/label/define etc keywords, hotkey CTRL+Space) 
+[+] Added support for nested classes on getmonostruct 
+[+] When saving a script for the first time you will be asked for the script name 
+[~] Improved double click selection 
+[~] Improved speed of finding unique aob in module 
+[!] Fixed possible exception on getmonostruct while detached
+
+Assembler:
+[!] Fixed couple of memory leaks
+[!] Fixed qword ptr parsing
+[!] Fixed minor bugs
+
+Disassembler:
+[+] Updated Capstone to version 3.0.5-rc2
+
+Savegame Editor:
+[+] Reworked design to give better usability especially for low experienced users
+
+Pointer Scanner:
+[+] Replaced waiting bar with progress bar showing realtime scan progress 
+[~] Improved status message especially when scan is done and pointers will be added to list on second pointer scan 
+[!] Fixed small memory leak
+
+Structure Dissect:
+[+] Added browse in dump context menu item 
+[+] Added possibility to create groups 
+[~] If you insert a new offset item it will be automatically guessed from the current selected node 
+[~] Double click only opens node properties when offset column is focused now (prevent it to open when you want to change a value) 
+[!] Fixed error spam if target process has exited 
+[!] Fixed parsing values from child nodes 
+[!] Fixed exception when trying to open node property of auto filter node 
+[!] Fixed string length in mono structures
+
+Memory Viewer:
+[+] Added an option to highlight a specific register 
+[+] Added aob scan region injection context menu item 
+[+] Moved some strings to translation file 
+[+] Added context menu item to copy unformatted address to clipboard (without module or symbol names) 
+[+] Added memory position column captions to text view 
+[+] Added multi cell copy to clipboard from dump viewer 
+[+] Added paste of AOB to dump viewer is now possible 
+[+] Added a status bar to opcodes list 
+[~] Improved jump lines so they will be displayed even if the selected node is no longer visible 
+[~] Improved speed of scanning for AOBs inside module 
+[~] Changed selection in dump view to cell selection 
+[~] Changes text view so it does not show extended ascii symbols 
+[~] Go to address dialog is now sizeable in width 
+[!] Removed line breakers in auto generated comments if exist 
+[!] Fixed Find AOB does not respect your show symbol setting 
+[!] Fixed status bar address is wrong
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 3.2.0.0
+-------------------------------------------------------------------------------------------------------
+
+This update is highly recommended as it improves the speed of adding scan & pointer results to list by more than 50% as well as fixing some major issues.
+
+General:
+[+] Added Italian language (Thanks to Sheelin) 
+[~] Right click triggers selection in tables now (can be disabled in options)
+
+Main Form:
+[~] Scanner is now opened by default on start (can be disabled in options) 
+[~] Some minor overall performance improvements 
+[!] Fixed exception when opening a memory viewer and the target process has exited
+
+Settings:
+[+] New design
+[+] Added an option to exclude system processes which is enabled by default 
+[+] Added an option to exclude specific processes by name 
+[+] Added an option to use process list instead of window list by default 
+[+] Added an option to change the default font used in CoSMOS 
+[+] Added options for changing default settings on show module and symbol names in memory viewer
+
+Debugger:
+[+] Added an option to hide windows debugger which is active by default
+
+Documentation:
+[~] Updated various topics
+
+Disassembler:
+[+] Added support for 'fcompi' operator
+[~] Added support for 'int3' operator notation (missing space)
+
+Scanner:
+[+] Added scan result counter shows the currently found results while scanning 
+[+] Added support for changing type for multi selection (Hotkey ALT+Return) 
+[~] Improved speed of adding scan results by more than 50% 
+[~] Reset scan now also resets the search values, value type and the advanced options 
+[~] Moved maximum results to show to settings so you can permanently set the value 
+[~] Made the state of adding scan results more obvious 
+[!] Fixed changing address in stored items 
+[!] Fixed address in property window 
+[!] Fixed changing description for multi selection does not work if CoSMOS is not attached 
+[!] Fixed error message when searching for changed/unchanged and the scan value is invalid 
+[!] Fixed reported increased by enumeration exception on invalid value 
+[!] Fixed reported NullReferenceException when editing a pointer address in some circumstances
+
+Script Editor:
+[+] Added syntax highlight for selected word similar to Notepad++ (can be disabled in options) 
+[+] Added support for CE command 'usemono' and 'LaunchMonoDataCollector'
+[+] Added support for mono symbols in 'alloc' and 'define' command 
+[+] Added support for CE command 'getmonostruct()' -> Please read documentation about differences!
+[+] Added more templates
+[+] Added more snippets
+[~] Added more information in which line a script error has occurred 
+[~] Paste text as plain text per default instead of keeping the format 
+[~] Creating a script on 64bit unity target will now use mono symbol in 'alloc' command instead of address if available 
+[~] Improved selection algorithm on double click 
+[~] Improved regex detection of commands 
+[!] When saving an existing script the modified attribute was not reset 
+[!] When inserting a snippet the current view is properly restored now instead of jumping around in large injection scripts 
+[!] Fixed a possible issue where the default font size is incredible large
+
+Pointer Scanner:
+[~] Improved speed of adding pointer results by more than 50%
+
+Memory Viewer:
+[+] Added byte pointers detection to auto generated comments 
+[+] Added read-only text view to dump view 
+[+] Added column width automatically based on content so you do not need to resize columns yourself 
+[~] Added indicator when the auto generated comment is a float value 
+[~] If you hold down shift key while clicking on 'Go To Address' it shows the non-module/symbol address in dialog instead 
+[~] Using normal aob injection if target location is not inside a module on aob module injection 
+[!] Made list of nop'd opcodes accessible by all instances of memory viewer 
+[!] Fixed addresses are shown instead of their symbol names in some circumstances 
+[!] Fixed list of nop'd opcodes is not cleared after attaching to another process 
+[!] Fixed a possible issue where the default font size is incredible large 
+[!] Fixed huge memory leak in dump view 
+[!] Fixed not respecting the line view settings 
+[!] Fixed searching for assembler code may fail in some cases
+
+Structure Dissect:
+[+] Added support for module names as addresses 
+[+] Added context menu item to add selected items to address list 
+[+] Added context menu item to column to change the base address 
+[+] Added context menu item to column to rename the caption 
+[+] Added a structure name to caption based on the first address or if it's a mono class the mono class name 
+[+] Added context menu item to copy selected address to clipboard 
+[~] To open an inline editor you need to perform a delayed double click (or select and press RETURN) instead of single click now 
+[!] Fixed editing values had no effect
+
+Module Viewer:
+[+] Added more filters to the filter editor in Symbols list like contains etc 
+[+] Added support to open a new memory viewer instance by holding shift when double clicking on a symbol item
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 3.1.1.0
+-------------------------------------------------------------------------------------------------------
+
+Debugger:
+[!] Fixed an exception on disposing the context menu in 'Find out what addresses this code accesses'
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 3.1.0.0
+-------------------------------------------------------------------------------------------------------
+
+General:
+[+] Updated DevExpress libraries to 16.2.6 as result native images will be generated again even if you have CoSMOS 3.0 installed.
+[~] Updated mono injection dll for upcoming improvements
+[~] Updated dll injection to support unicode path
+
+Installer:
+[+] Messagebox on uninstall asking whether to perform a clean uninstall which removes the whole CoSMOS directory.
+
+Documentation:
+[+] Added 'Tips & Tricks' topics to reveal some tricks in CoSMOS, note: Not only for beginners!
+[+] Added filter system in structure dissect demonstration video
+[~] Changed the default width of video player to 800
+
+Debugger:
+[+] Added context menu to copy register values in 'Find out what addresses this code accesses' form
+
+Scanner:
+[+] Added browse in dump to context menu of search results
+[~] Slightly improved speed of adding elements to scan result list
+
+Memory Viewer:
+[~] Mouse hover and selection call preview is now a group where either first or second or none can be used
+[~] Improved mouse hover call preview so it only appears if you mouse hover the opcode (instead of row that contains the opcode)
+[!] Fixed exception if go to address field is empty
+[!] Fixed reported exception when using mouse hover call preview or selection preview
+
+String References:
+[~] Skip references search on call opcodes
+[~] Reset progress bar text on finish so if no results has been found it doesn't look like it's still searching
+
+Structure Dissect:
+[+] Added refresh values on the fly
+[+] Added description
+[+] Added property window where you can change the type/description etc of each node
+[+] Added possibility to add/remove nodes
+[+] Added powerful filter system
+[+] Added possibility to compare a value from a column against a value from another column
+[+] Added menu options to change the highlighted colors
+[+] Added menu option to export the structure to Xml, Html, Xlsx, PDF or text
+[+] Added menu option to import a structure from file
+[+] Added search hotkey: CTRL+F
+[~] Changed hotkey to remove a structure address
+[!] Fixed fail to get mono structure in some circumstances
+
+
+CoSMOS Changelog 3.0.0.0
+
+Focusing on multi threading and performance many GUI and core elements of CoSMOS have been rebuilt from scratch. There are way more improvements this changelog covers and many requests have been added that were not possible before.
+ 
+Global:
+[~] Massive performance improvements. For example the starting time has been drastically reduced
+[+] 32-Bit and 64-Bit debugger
+[+] Localization, CoSMOS can be translated into any language. See http://www.cheathappens.com/show_board2.asp?headID=134347&titleID=22269 
+[+] CoSMOS is now modular. It uses memory and CPU only for the modules you are using.
+[+] Unlimited tabbed/floating windows. Example: You can launch up to unlimited script editors, move them around the screen. Undock from CoSMOS, dock it to the left of a memory viewer so you have a split screen style and so on.
+[+] Added possibility to save and restore workspaces
+[+] Added an overlay icon to the taskbar when a new version is available
+[+] Mono jitter supports nested classes now for example: 'Mainclass+Subclass:Method+0'
+[~] Settings are now stored differently. As a result previous settings are invalid
+[~] Removed Fasm.NET reference as no longer used
+[!] Fixed crash when importing an invalid or corrupt CheatEngine or CoSMOS table
+ 
+Installer:
+[+] Installer will generate a native image of CoSMOS on first time installation, which will permanently boost the performance (especially
+the 'First time' performance where .NET controls takes a bit to load on first launch). As a side effect this will also permanently boost the performance of some trainers on the same machine where CoSMOS is installed
+[~] Changed to InnoSetup due to some strange behaviors in previous software
+ 
+Documentation/Help:
+[+] Rewritten from scratch. The documentation/help is now focused to explain the most important GUI parts but also give some background information for real beginners. Also you can properly search for keywords.
+ 
+Main Form:
+[+] Added button which opens the target process directory in windows explorer
+[+] Added very basic 'stealth' mode which hides CoSMOS caption as some games scanned for similar tools in the past
+[+] Added toggle button to stay on top
+[+] New notification when a new version is available
+[!] Fixed an exception when no default browser is set in windows and several buttons where clicked
+ 
+Memory Scanner:
+[+] Scanning progress is now visible on the taskbar icon
+[+] Completely rewritten Add Address dialog so people coming from CE have it easier, focused on tabbing/keyboard management
+[+] Added 'Reset To Previous Value' context menu item to scan results which sets the selected items back to the previous value
+[+] You can copy scan results to clipboard now
+[+] The address range now supports module and symbol names so you can search from "module.exe" to "module.exe"+500
+[+] Added a toggle for 32-bit aligned scan
+[~] Scan options are properly placed on resizing the form
+[~] Default amount of results to show has been increased from 100,000 to 1,000,000
+[~] Changing a cell requires a double click now makes it easier to select entries and not accidentally triggering to edit the cell 
+[~] To edit an item's properties either hold down shift while double clicking on it or use the new context menu item
+[~] When choosing 'Browse In Dump' the dump viewer now automatically switches to the value type of the item
+[~] The sound feedback if a hotkey is pressed now plays after the depending action is finished
+[!] Fixed when deactivating a script and process is not running a messagebox occurs
+[!] Fixed a bug where some floating values don't appear
+[!] Fixed selected theme does not apply to history window
+[!] Fixed scan is not reset when attaching to another process
+[!] Fixed pointerscan was possible for script or description item
+[!] Fixed exception when try to paste an empty clipboard to stored items
+ 
+Pointer Scanner:
+[+] Pointer scan is now multi threaded and asynchronous
+[+] Added Rescan for Address and Rescan For Value
+[+] Pointer scan status is now visible on the taskbar icon
+[!] Fixed exorbitant memory usage on pointer scan
+[!] Fixed exception on pointer scanning 64bit targets
+ 
+Script Editor:
+[+] When inserting a snippet, the current caret position will not change.
+[+] On changing template the caret position is set right to the start of the code injection so you can type right away.
+[+] Auto correction for label and registersymbol syntax
+[+] Added insert label snippets
+[+] Added syntax highlighting for multiline comments in script editor
+[+] Added create thread script template
+[+] Added a custom header to all scripts which can be defined in the settings
+[+] You can set the default font size in settings now. Useful on 4k resolutions with standard DPI
+[+] Added hotkeys for inserting snippets
+[+] When a word is selected you can create a label for it via context menu
+[+] Added syntax highlighting for floating registers
+[~] Bytes in unique aob string are now correctly formatted so each byte is shown by a length of 2
+[~] Made random aob identifiers in script editor templates less emphasized
+[~] Uses a Devexpress control now. So if you change the theme the script editor gets changed as well
+[!] Fixed aob scripts haven't unregistered the aob symbol
+[!] [REPORTED] Fixed finding unique aob non-module fails
+[!] Fixed a template
+[!] Fixed an assembler issue on CE scripts
+ 
+Modules:
+[+] Symbol list has a simplified search field now
+[~] Searching for a modules now filters out unwanted results
+ 
+String References:
+[~] Improved scan speed by up to 80%
+[~] Search is now multi threaded and asynchronous
+ 
+Memory Viewer:
+[+] Added asynchronous and multi threaded find assembly code search, wildcard is supported
+[+] Added a range filter on Find AOB dialog
+[+] You can now copy the selected item in Find AOB dialog via CTRL+C to clipboard
+[+] Dump viewer now shows module name, size and base
+[+] Nop'd opcodes can now be restored via context menu
+[+] When you replace an opcode which takes less bytes you will get asked if you want to nop the rest
+[+] You can set the font size in settings now. This is useful for 4k resolutions with standard DPI and long sessions
+[+] Added allocate memory menu option
+[+] Added syntax highlighting for floating registers
+[~] Find aob dialog clears the results before searching to make it easier to see if it has found something
+[~] Automatically paste clipboard context in find AOB dialog search for if clipboard could be a hex string
+[~] Lines copied to clipboard are now properly tab formatted
+[~] Changing opcodes in memory viewer works more reliable now and support for script functions like (float) etc. has been added
+[~] Leading zeros in Find AOB dialog are now automatically removed
+[!] Syntax highlight has been set for each theme to a readable default value
+[!] Fixed shortcuts (for example Go To Address) were global
+[!] Fixed not switching to memory viewer when double clicking an item in find aob dialog
+[!] Fixed blank addresses in memory viewer on Unity games
+[!] Fixed symbol/module name is not resolved on some opcodes (calls/jumps)
+[!] Fixed background color of comments in memory viewer on dark themes
+(it uses the theme default background now)
+[!] Fixed hotkey for find aob dialog works everywhere in CoSMOS
+[!] Fixed hotkey for go to address dialog works everywhere in CoSMOS
+[!] Fixed searching aob fails in some circumstances
+[!] Removed message when opening the Go To Address window while target process has exited as sometimes it makes sense to open the dialog nevertheless
+ 
+Structure Dissect:
+[+] Added possibility to change value type
+[+] Added support for mono class dissect
+[~] Improved address parsing
+[!] Fixed a couple of parsing issues
+ 
+Value Converter:
+[+] Added hex and decimal XOR
+[~] Removed some conversions as the results were very unreliable and most conversions are covered by other options
+ 
+Settings:
+[+] Settings are now stored in an INI file in CoSMOS directory
+[+] Added font size for script editor and memory viewer 
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 2.0.1.0
+-------------------------------------------------------------------------------------------------------
+
+[+] Added button to add selected pointer(s) to list 
+[+] Added button to delete selected pointer(s) 
+[+] Added buttons to import and export pointer list 
+[+] Added auto refresh pointers (to see where they point to in real time) 
+[+] Added possibility to filter pointers
+
+[~] Improved performance on pointer scan slightly
+
+[!] [REPORTED] Fixed overflow exception on parsing rubbish assembler code on 64bit targets
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog 2.0.0.0
+-------------------------------------------------------------------------------------------------------
+
+[+] Added a pointer scanner
+[+] Added context menu item to scan for pointers of selected item in stored results
+[+] Added string references search to memory viewer 
+[+] Added context menu item to search string references in current module in memory viewer 
+[+] Added support for showing string references in memory viewer 
+[+] Added structure dissect (hotkey: CTRL+D) 
+[+] Added unique identifier for aob scripts 
+[+] Added aob scan region script template 
+[+] Added more filter operators to the symbol list like contains, begin/ends with and so on 
+[+] Added symbol names toggle to memory viewer
+
+[~] Increased performance by up to 68%
+[~] Static addresses in scan result list are now green 
+[~] Improved finding unique AOB (skipping some address specifiers, calls, etc.)
+[~] Disable auto generating comments for pointers not pointing to static addresses in memory viewer 
+[~] Disable rip-relative addressing 
+[~] Improving pointer handling on stored items 
+[+] Upgraded DevExpress libaries to 16.2.4
+
+[!] Fixed two memory leaks
+[!] Fixed jumping to invalid address in memory viewer resulting in an exception 
+[!] Fixed deactivating issue with aob script templates 
+[!] [REPORTED] Fixed ArgumentNullException in memory viewer 
+[!] [REPORTED] Fixed invalid regex exception on speedhack injection 
+[!] [REPORTED] Fixed installer overrides setting file
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.4.2
+-------------------------------------------------------------------------------------------------------
+
+[+] Re-added 'Compare to first scan'
+[+] Added scan information button which shows the scan history
+[+] Creating aob scripts within memory viewer will now have a unique aob (if found) 
+[+] In find AOB dialog the 'Dont stop' is now available within module search
+
+[~] AOB templates created from memory viewer using opcodes instead of bytes on destruction 
+[~] Empty lines at the end of the script are no longer created when adding snippets.
+[~] Script templates now restore original code first before destroying the codecave instead of after 
+[~] Removed some debugger stuff 
+[~] GUI improvements on memory viewer 
+[~] [REPORTED] CoSMOS will no longer crash when attaching to a protected game. This is not a bug nor will CoSMOS ever work on these games 
+[~] If attaching to a second/different process the memory viewer is now refreshed at the current position
+
+[!] Fixed a bug when adding addresses from scan getting grouped for no reason 
+[!] [REPORTED] Fixed crash when enabling speedhack on some computers 
+[!] Fixed crash if speedhack value is empty 
+[!] [REPORTED] Fixed Soap Parse Error exception 
+[!] Fixed exception when changing value type where address is not stored in hex 
+[!] Fixed some script errors on floating disassembler code
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.4.1
+-------------------------------------------------------------------------------------------------------
+
+[+] Added an additional page to the wizard letting users know where they can find video tutorials for CoSMOS 
+[+] Added a checkbox to the first wizard page to skip all pages for experienced users 
+[+] Added a new 'Video tutorials' context item to the help button 
+[+] Added custom exception when enabling speedhack has failed 
+[+] Added messagebox when trying to attach to a secured process. Many people have reported this issue/crash but in fact, it is caused by multiplayer anti-cheats.
+
+[~] Updated Devexpress components to 16.1.7
+
+
+[!] [REPORTED] Fixed exception in several cases when CoSMOS is launched by another program instead 
+[!] Fixed some paths in ignored process file aren't affecting the process list 
+[!] Fixed crash in .NET viewer 
+[!] Fixed mono features are still active when attaching to a mono based game first and then to a non-mono based game
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.4.0.0
+-------------------------------------------------------------------------------------------------------
+
+Big changes in 1.4.0:
+
+- Added 'Find out what addresses this instruction accesses' to memory viewer
+- Changed the way addresses are stored in CoSMOS to CE's method
+- Settings are stored in a setting file now and lots of additional settings have been added
+- You can pause/resume the target process now
+- CoSMOS uses now Capstone disassembler
+
+-----------------------------------------------------------------------------------------
+
+[+] You can change nearly all colors of the script editor now in settings
+[+] You can change syntax highlighting color of memory viewer now in settings 
+[+] Pressing ESC key will now close the Find AOB dialog 
+[+] You can change the forecolor of scripts and pointers in stored items in settings now 
+[+] Added information about the current lines of self written code in about dialog 
+[+] You can change the register values in memory viewer on breakpoint hit now (or copy them) 
+[+] In memory viewer the comment section is now auto-filled by Cosmos if no comment has been set. It will read out pointers and convert hex values to decimal 
+[+] Inspired by x64dbg, added jump/call preview window on mouse hover and/or on selection to memory viewer, visible only if target location is outside of screen 
+[+] Re-added bookmarks to memory viewer 
+[+] Added 'Previous' column to scan results used for auto-refreshing values 
+[+] You can change type of multiple items in scan results at once by selecting them and edit one 
+[+] [REQUESTED] Added the possibility to (un)pause the selected process 
+[+] Added a copy button to exception report form 
+[+] Added support of pointer and strings in DotNet viewer which will be added on double click to stored item list 
+[+] [REQUESTED] Added possibility to change the temp folder for scan files of CoSMOS in settings 
+[+] Added pause/unpause on scan checkbox to advanced options 
+[+] Added a way to hide processes in cosmos. Enter the process name you want to be hidden in the _hideProcesses.txt file in CoSMOS directory 
+[+] Added an alternative method to retrieve a process icon in case the default method has failed 
+[+] Added auto complete to process list. When opened you can start typing to quickly select the process you are looking for 
+[+] Toast notification if a CoSMOS update is available 
+[+] Inspired by a CE request: Added 'Increase By Enumeration' context menu item where you can increase all selected items by +1 + the incremental of the previous item. So +1 for the first, +2 for the second, +3 for the thirst and so on.
+
+[~] Changed the way of working with addresses. From now on it works the way as CheatEngine. For example by adding addresses you can modify the base like 'address+20'. This however will break some old CoSMOS scripts, sadly. But it improved the support of CheatEngine table and makes it easier for people to work with CoSMOS if they have worked with CheatEngine before 
+[~] The go to address dialog will now have the current selection address as default text 
+[~] Separation between addresses and symbols has been removed. You can add them in the same single step.
+[~] The address field is now focused when opening the add address dialog so you can start typing immediately 
+[~] Addresses in 32bit range of a 64bit process will no longer be displayed as a 64bit range. Less zeros making it easier to read 
+[~] Replaced Cosmos.Engines.Disassembler disassembler by Capstone disassembler 
+[~] [REQUESTED] Find AOB dialog will now start by searching within the module you are currently browsing in memory viewer. If you are not within a module it will use the default settings 
+[~] All settings are now saved in installation directory and all settings can be changed on settings tab 
+[~] Hide help button on prompts as it is without function 
+[~] Exception handling on mono injection 
+[~] Decreased comments column size and increased address column size in memory viewer 
+[~] Jump line is now dashed and thinner 
+[~] Auto-refreshing values in scan results is on by default 
+[~] Changed tab order on exception report form 
+[~] Improved recognition of hotkeys especially hotkey combinations 
+[~] Heavily improved speed of opening process list 
+[~] Process selection window is now resizeable 
+[~] Small performance improvements here and there 
+[~] Find out what access/writes will now increase the breakpoint window instead of registers window when changing the window size
+
+[!] Ribbon and some bars no longer reacts to alt key pressed causing some issues with menu hotkeys where alt key was used 
+[!] [REPORTED] Added an information messagebox if trying to use 'Find out what' on 32-bit process, fixed a possible crash 
+[!] [REPORTED] CoSMOS freezes on attaching debugger. Please note that the debugger part is still very experimental!
+[!] Fixed color changes in scan results disappear to fast 
+[!] Fixed 'Injection here' marker in scripts goes one opcode too far 
+[!] [REPORTED] Fixed multiple shortcuts in programs folder created by installer on upgrades 
+[!] [REPORTED] Added a messagebox if trying to use dotNET feature when the proxy process file does not exist in installation directory, fixed exception [!] Fixed setting breakpoints when debugger is not attached in memory viewer 
+[!] Fixed messagebox spam if attached process is closed and you scroll to end of line in memory viewer 
+[!] Fixed crash in memory viewer if you wanted to jump to unexpected addresses 
+[!] Fixed memory viewer not starts at main module when attached for the first time 
+[!] Exception is no longer url formatted when copied to clipboard 
+[!] Fixed add new address dialog can cause a huge lag if not attached to a process 
+[!] Fixed type of scan result cannot be changed when auto-refresh is active 
+[!] Fixed pressing CTRL+A in scan results will add all selected items to the stored item list instead of selecting all scan results 
+[!] Fixed some exceptions when a read value is invalid in several locations in CoSMOS 
+[!] Fixed if you copy and paste an entry in stored items and modify one, both gets modified 
+[!] Fixed a rare issue where the exception reporter cannot be closed 
+[!] Fixed crash/freeze when attaching debugger to a Unity based game 
+[!] Fixed find out what access/writes sometimes shows null as address/opcode 
+[!] Fixed possible exception in memory dump viewer
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.3.5.0
+-------------------------------------------------------------------------------------------------------
+
+[+] Added first implementation of a debugger. You can set a breakpoint in memory viewer, view registers and resume. 64-Bit only!
+[+] Added 'Find out what accesses to' and 'Find out what writes to'. 64-Bit only!
+[+] Added a toggle for even/odd rows having different color schemes in memory viewer 
+[+] Added a menu button to insert a register symbol snippet to the script editor 
+[+] Added a bunch of hotkeys to several buttons
+
+[~] Replaced dock panels in scanner with split panels 
+[~] Script will be checked for errors before adding to stored item list 
+[~] Do not inform user that the table is saved on crash when the table is not saved because it was empty 
+[~] Odd lines in memory viewer have a different background color making it easier to read. This can be toggled.
+[~] Selected cell in memory viewer is no longer highlighted 
+[~] If it fails to send a crash, it asks now whether to copy the information to clipboard 
+[~] Tab header of memory dump is hidden now 
+[~] For skilled and experts the default scan value is now 4 bytes 
+[~] Add new symbol item uses now the default add new item form where symbol is checked by default 
+[~] Add new stored item or add new symbol item is now at 8 bytes if attached to a 64bit process 
+[~] Hotkey to start the tutorial has changed from F2 to ALT+F2 
+[~] The list of processes shows more items at once now 
+[~] Jump lines have been improved and point to the correct line in memory viewer if this line is visible
+
+[!] Setting for showing jump lines isn't loaded properly 
+[!] Color of tabs at the bottom hasn't changed until you mouse hover after changing experience level 
+[!] Fixed rare crash when using go to address due to Cosmos.Engines.Disassembler bug 
+[!] Fixed crash on some .NET games where .NET viewer is used 
+[!] Fixed jump lines are not fully drawn when memory viewer window is maximized
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.3.0.0
+-------------------------------------------------------------------------------------------------------
+
+[+] Added description why a script injection has failed (if the reason is known) 
+[+] Added notification if you try to use the  .NET viewer on non-dotnet based games 
+[+] Completely reworked value converter, application wide hotkey: SHIFT+F3 
+[+] Added a button to launch windows calculator, application wide hotkey: CTRL+SHIFT+F3
+[+] Completely reworked the FAQ part
+[+] Added a 'Nop selected opcodes' to memory viewer 
+[+] Added button to turn off auto-complete on go to address including a hotkey CTRL+ALT+A 
+[+] Added hotkey to toggle module names in memory viewer: CTRL+M 
+[+] Added an option to toggle horizontal and vertical lines in memory viewer 
+[+] Added preview to Add Address window showing the final address and value 
+[+] Added browse in dump context menu item to stored item list 
+[+] Added basic jump line support to memory viewer which currently only shows the direction 
+[+] Added more FAQ videos 
+[+] Added RPG Maker scan type, see FAQ for more information
+
+[~] Removed UPX to reduce false flags from AVs 
+[~] Changed routine on address conversion to hopefully fixed the not comprehensible overflow crash some users have reported 
+[~] Horizontal and verticles lines in memory viewer are disabled by default now 
+[~] Hex in memory viewer is displayed in upper case and without leading "0x" now 
+[~] Code cleanup
+
+[!] Fixed go-to-address history appeared in AOB finder 
+[!] Fixed copy offset in memory viewer hasn't worked on symbol addresses (it copies the module offset now) 
+[!] Fixed following jumps was broken in last version 
+[!] Fixed .NET viewer crash 
+[!] Fixed speedhack crashes 64-bit games on some computers
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.2.8.1
+-------------------------------------------------------------------------------------------------------
+
+[!] Possible crash when saving table and attached process has exited 
+[!] Fixed freezing values stopped working
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.2.8.0
+-------------------------------------------------------------------------------------------------------
+
+[+] Added CTRL+C and CTRL+V in stored item list to copy and paste items 
+[+] DotNet Viewer
+
+[~] Moving items in stored item list has been changed so you can either add items to existing items or just change the index.
+
+[!] Added check if external files exist before using them 
+[!] Fix script injection on some 64-bit games
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.2.7.0
+-------------------------------------------------------------------------------------------------------
+
+[+] Added all missing jump instructions to syntax highlighting 
+[+] Added 'ah,bh,ch,dh' register to syntax highlighting 
+[+] Added links to help menu 
+[+] Added CTRL+R hotkey to memory viewer to refresh 
+[+] Added notifications if beginner and scan takes longer than 15 seconds to remind switching to skilled or expert and change data type
+
+[~] All tabs are shown by default and tabs are disabled accorded your experience level 
+[~] Re-enabled toast notifications
+
+[!] Fixed speedhack freezes 64-bit games in some circumstances 
+[!] Fixed crash if you enable speedhack twice on the same process.
+[!] Fixed some script problems if key words are written in upper- or mixed-case.
+[!] Fixed unity engine detection may fail on 32bit games 
+[!] Possibly fixed reported overflow crash on UpdateNode in stored items list 
+[!] Fixed crash if trying to jump to a negative address in dump viewer (why would someone do that at all?)
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.2.6.0
+-------------------------------------------------------------------------------------------------------
+
+[+] Option to turn off the disclaimer on table import -> check settings tab 
+[+] Added hotkeys and tooltips to script editor menu items 
+[+] Added if you add a script that contains registered symbols you'll be asked if CoSMOS should add these symbols to the list as well. This should save some time on table creation
+
+[~] The header field 'Offsets' in adding new address dialog can no longer be filled (which value was ignored anyway) 
+[~] Increased the animation speed when switching between the tabs to make it feel less laggy 
+[~] Requested: Show everything at start without requiring to attach to a process first (since we have an in-app tutorial, this is indeed not really required anymore)
+
+[!] Fixed several crashes if you start CoSMOS for the first time with tutorial enabled and use various options without attaching CoSMOS to a process. Thanks for report!
+[!] Fixed out of order columns in dump view in some circumstances 
+[!] Fixed crash when using dumpview options when no dump is shown 
+[!] Fixed missing check if offset is valid on adding an address dialog 
+[!] Fixed error message when trying to add an address with address value of zero.
+[!] Fixed game freezes when injecting speedhack in some circumstances
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.2.5.0
+-------------------------------------------------------------------------------------------------------
+
+[+] Added 'Ctrl+Space' hotkey to synchronize the views in memory viewer
+[+] Added popup menu toggle item 'Show as hex' to dump viewer
+[+] Dump viewer is now writeable
+[+] Added Mono (unity engine) support (memory viewer + script editor)
+[+] Added a 'Check Syntax' button to script editor. It checks if the script can be injected without actually injecting code
+[+] Added 'jnp' and 'jbe' to syntax highlighting
+[+] Added [Enable] and [Disable] to syntax highlighting
+[+] Added if you press 'right' arrow key on Go To Address dialog it jumps to the end of auto completion now
+[+] Added license files for third party tools
+
+[~] CoSMOS default table name on import/export is now the process name cosmos is attached to
+[~] Default dump view is now in HEX
+[~] Speedhack has been moved into a new ribbon group and becomes visible after you've attached to a process
+[~] Improved startup time a little bit
+[~] Improved cleanup
+[~] Improved recognition if memory viewer or dump viewer has got focus
+[~] Dump view will now show values not equal to 0 in bold font
+[~] If you edit an existing item in stored items the depending nodes are expanded if the content is set. Means address node is expanded if it is a symbol and offset node is expanded if it contains offsets.
+[~] Experience level has been moved back into ribbon menu as requested
+
+
+[!] Fixed reported OverflowException crash
+[!] Fixed reported crash on importing corrupted settings file
+[!] Fixed CoSMOS can start outside of screen
+[!] Fixed float and double values are displayed incorrectly in scan results when auto-refresh is not active
+[!] Fixed register syntax highlight in script editor not works if assembly register is start or end of line
+[!] Not a bug but should have been by default: CoSMOS now deactivate all scripts if you close CoSMOS and the game is still running to restore the original game memory
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.2.4.0
+-------------------------------------------------------------------------------------------------------
+
+[+] Added pointer import from CE tables
+[+] Unique color for pointers in stored items (Blue)
+[+] If you double click on a stored item it lets you edit (and overwrite) this item in a dialog
+
+[~] Removed memorysharp reference and replaced the two functions used with self-written code 
+[~] Changed the green color of scripts in table so you can read it better when using a bright theme 
+[~] Fixed some small memory leaks on registered symbols
+
+[!] Fixed crash in GetPointer function reported by multiple users 
+[!] Fixed a crash on importing CE tables in some circumstances
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.2.3.0
+-------------------------------------------------------------------------------------------------------
+
+[!] Fixed add address dialog was sizeable 
+[!] Fixed registered symbol weren't registered when attaching to a process first and then loading a cosmos table 
+[!] Fixed editing values on pointers
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.2.2.0
+-------------------------------------------------------------------------------------------------------
+
+[+] Added support to search AOB within 64-bit modules
+[+] Added pointer support
+[+] Added a new dialog for adding addresses to the stored items which you can use to add pointer
+
+[!] Fixed script templates in memory viewer will use module+offset instead of module only for aob and 64bit parts
+[!] Fixed when going to a module address in memory viewer and you select multiple rows it also selects the row before the module address as well
+[!] Fixed go to address via context menu in memory viewer is not centered to CoSMOS
+[!] Fixed registered symbol addresses aren't registered if you add them and attach to a(nother) process afterwards
+[!] Fixed crash on startup on CoSMOS 1.2.1
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.2.1.0
+-------------------------------------------------------------------------------------------------------
+
+[+] Added symbol support to stored items (Script makers: Click on the add item menu in the stored item list and choose "Add a symbol item" and enter the name of the registered symbol you have used in your script)
+[+] Added "Find AOB" dialog to memory viewer. Press CTRL+F to open or click on the new menu button.
+[+] Added 11 additional themes
+[+] Added a new "AOB Module" injection template for script editor
+[+] Creating scripts from memory viewer will now create a comment at the bottom of the script containing the injection location
+[+] Added a proper dump view to memory viewer (currently read-only)
+[+] Added more in-app FAQs
+
+[~] Improved CE table support for custom registered symbols + Addresses are now imported from CE tables as well as long as they're not pointers
+[~] Improved performance when adding huge amount of scan results to stored items
+[~] Process/window list is now sorted by memory usage. Process with highest memory usage are on top.
+[~] Revert change from only visible items in stored item list gets updated. Added new method to update all items with nearly zero performance loss
+[~] Moved experience level settings into new 'Menu' in the top left of CoSMOS
+[~] Script editor templates are now properly set up if target process is 64bit
+[~] Removed auto-complete on address cell in stored items
+[~] Compressed FAQ videos to reduce the file size
+
+[!] Fixed memory leak on stored items
+[!] Fixed always the default CH theme is loaded on start (if you have set another theme you had to set it again on every start)
+[!] Fixed memory viewer table layout isn't saved properly
+[!] Fixed merging of existing settings does not work properly
+[!] Fixed changing between hex/decimal in stored items affects all items and not the selected items as expected
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.2.0.0
+-------------------------------------------------------------------------------------------------------
+
+[+] Added two additional themes including a new setting where you can choose between all themes
+[+] Added copy offset context menu item and hotkey to memory viewer
+[+] Memory viewer shows addresses as symbols now if exist
+[+] Added Speedhack (32-Bit & 64-Bit supported)
+[+] Added more hotkeys to assign in settings
+
+[~] Stored items get updated only when visible like scan results
+[~] Upgraded to DevExpress 16.1.5 controls
+
+[!] Fixed crash if you add a search result to stored item list in some circumstances
+[!] Fixed syntax highlighting in memory viewer sometimes draw registers in transparent color
+[!] Fixed following jumps/calls in memory viewer doesn't work if the address is shown as symbol/module name
+[!] Fixed new settings were hidden when upgrading from an older CoSMOS version
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.1.16.0
+-------------------------------------------------------------------------------------------------------
+
+[+] Added tutorial videos
+[+] Added value showing the amount of items after a filter has been applied comparing to the amount of unfiltered nodes
+[+] Added crash report form
+[+] Added feedback form
+[+] Added 'View module names' item for memory viewer
+[+] Added 'Refresh' menu item for memory viewer
+[+] Improved symbol handling. 'Go To Address' works now with 32-bit modules as well. 
+[+] 'Go To Address' works with symbol functions now, for example "kernel32.terminateprocess" will bring you to the address of this function.
+[+] Added register syntax highlighting in memory viewer and script editor
+[+] Added 'Overwrite' menu item if you edit a script
+[+] Added module list to memory viewer
+[+] Added symbol list to memory viewer (double click on module to load its symbols)
+[+] Added update notification
+[+] Added more in-app FAQ entries
+
+[~] Auto-refresh is off by default now (revert change from previous version)
+[~] Module names in memory viewer are now in quotes when necessary to avoid issues on script creation
+[~] Table is no longer backup'd if it is empty
+[~] Changed color table on memory viewer & call/returns are separately colored
+[~] Adding scripts to table will automatically switch view to table, unless shift key is pressed
+[~] Opcodes containing values which are addresses within a module are now shown as 'Module+Offset' unless you disable 'View module names'
+
+[!] Comments in memory viewer weren't saved. Now they are.
+[!] Fixed values are not displayed on ArrayOfByte search
+
+
+
+-------------------------------------------------------------------------------------------------------
+CoSMOS Changelog v1.1.15.0
+-------------------------------------------------------------------------------------------------------
+
+[~] Reverted selection change on scan and stored list. Selection stays now on click.
+[~] Removed indicator on stored item list
+[~] If you enable value sorting on scan results, it will disable the auto refresh automatically otherwise it may happen that, due to the nature how it works, it constantly sorts the values and the application heavily lags. The user gets notified by a tooltip.
+[~] Undo button is now disabled until the 2nd next scan has been performed
+[~] Header items are now underlined and bolded and scripts have a differen forecolor instead of both have different backcolor.
+ 
+[+] Disclaimer on importing CoSMOS table
+[+] Added info in wizard to press F1 if you need help
+[+] Added context menu item 'Edit Value' to stored item list
+[+] Added feedback form
+[+] Added a messagebox that asks the user if he really wants to clear the stored item list if he clicks that button to avoid accidentally delete all items.
+[+] Added a messagebox that asks the user if sorting should be disabled when it is enabled and too many results have been found because the application takes very long with sorting then.
+[+] Tooltip on launch about additional help if user is beginner
+ 
+[!] Fixed value filtering in scan results. Values are recognized as decimal now, so if you filter: Value between 20 and 25, you will no longer get values like 2055 etc.
+[!] 'Create aob injection' menu item was shown on popup in lower memory viewer
+[!] Fixed an 'Indexoutofrange' exception in memory viewer
+[!] Null exception reference when adding addresses to the list and a header item exist

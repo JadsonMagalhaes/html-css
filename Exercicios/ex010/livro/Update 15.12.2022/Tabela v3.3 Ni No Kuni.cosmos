@@ -1,0 +1,370 @@
+{
+  "$type": "CheatTable",
+  "ProcessName": "ProjectN-Win64-Shipping",
+  "Notes": "",
+  "Description": "No description",
+  "Hotkeys": [],
+  "Children": [
+    {
+      "$type": "AddressItem",
+      "Type": 7,
+      "Address": "\"ProjectN-Win64-Shipping.exe\"+67CDCA0",
+      "IsPointer": true,
+      "Offsets": [
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x788"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x80"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x1A8"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x8"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x8B0"
+        }
+      ],
+      "Length": 0,
+      "Description": "Speed Attack",
+      "Hotkeys": [],
+      "Children": []
+    },
+    {
+      "$type": "AddressItem",
+      "Type": 12,
+      "Address": "\"ProjectN-Win64-Shipping.exe\"+67CDCA0",
+      "IsPointer": true,
+      "Offsets": [
+        {
+          "$type": "ItemOffset",
+          "Offset": "0xDE8"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x38"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x0"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x30"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x260"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x288"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x18C"
+        }
+      ],
+      "Length": 0,
+      "Description": "Speed Hack",
+      "Hotkeys": [
+        {
+          "$type": "ItemHotkey",
+          "Hotkey": {
+            "$type": "CustomHotkey",
+            "IntKey": 112,
+            "Key": 90,
+            "ModifierKeys": 0
+          },
+          "Description": "",
+          "Action": 3,
+          "Value": "750"
+        },
+        {
+          "$type": "ItemHotkey",
+          "Hotkey": {
+            "$type": "CustomHotkey",
+            "IntKey": 112,
+            "Key": 90,
+            "ModifierKeys": 0
+          },
+          "Description": "",
+          "Action": 0
+        },
+        {
+          "$type": "ItemHotkey",
+          "Hotkey": {
+            "$type": "CustomHotkey",
+            "IntKey": 113,
+            "Key": 91,
+            "ModifierKeys": 0
+          },
+          "Description": "",
+          "Action": 3,
+          "Value": "470"
+        },
+        {
+          "$type": "ItemHotkey",
+          "Hotkey": {
+            "$type": "CustomHotkey",
+            "IntKey": 113,
+            "Key": 91,
+            "ModifierKeys": 0
+          },
+          "Description": "",
+          "Action": 0
+        }
+      ],
+      "Children": []
+    },
+    {
+      "$type": "ScriptItem",
+      "AssemblerScript": "[ENABLE]\r\nalloc(newmem,2048,\"ProjectN-Win64-Shipping.exe\"+12316BA) \r\nlabel(returnhere)\r\nlabel(originalcode)\r\nlabel(exit)\r\n \r\nnewmem:\r\ncmp [r8+rax+0C],(float)8.0\r\nja originalcode\r\nmov [r8+rax+10],(float)8.0\r\njmp returnhere\r\n \r\noriginalcode:\r\nmovss [r8+rax+10],xmm0\r\n \r\nexit:\r\njmp returnhere\r\n \r\n\"ProjectN-Win64-Shipping.exe\"+12316BA:\r\njmp newmem\r\nnop 2\r\nreturnhere:\r\n \r\n \r\n[DISABLE]\r\ndealloc(newmem)\r\n\"ProjectN-Win64-Shipping.exe\"+12316BA:\r\nmovss [r8+rax+10],xmm0",
+      "Description": "Rolls",
+      "Hotkeys": [],
+      "Children": []
+    },
+    {
+      "$type": "AddressItem",
+      "Type": 12,
+      "Address": "\"ProjectN-Win64-Shipping.exe\"+67CDCA0",
+      "IsPointer": true,
+      "Offsets": [
+        {
+          "$type": "ItemOffset",
+          "Offset": "0xDE8"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x38"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x0"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x30"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x260"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x98"
+        }
+      ],
+      "Length": 0,
+      "Description": "Time Dilation",
+      "Hotkeys": [],
+      "Children": [
+        {
+          "$type": "GroupItem",
+          "Description": "NO CLIP (Beta, may have some bugs, report them to me.)",
+          "Hotkeys": [],
+          "Children": [
+            {
+              "$type": "AddressItem",
+              "Type": 1,
+              "Address": "\"ProjectN-Win64-Shipping.exe\"+67CDCA0",
+              "IsPointer": true,
+              "Offsets": [
+                {
+                  "$type": "ItemOffset",
+                  "Offset": "0xDE8"
+                },
+                {
+                  "$type": "ItemOffset",
+                  "Offset": "0x38"
+                },
+                {
+                  "$type": "ItemOffset",
+                  "Offset": "0x0"
+                },
+                {
+                  "$type": "ItemOffset",
+                  "Offset": "0x30"
+                },
+                {
+                  "$type": "ItemOffset",
+                  "Offset": "0x260"
+                },
+                {
+                  "$type": "ItemOffset",
+                  "Offset": "0x288"
+                },
+                {
+                  "$type": "ItemOffset",
+                  "Offset": "0x168"
+                }
+              ],
+              "Length": 0,
+              "Description": "Movement Mode - 1 OFF 5 ON",
+              "Hotkeys": [],
+              "Children": []
+            },
+            {
+              "$type": "AddressItem",
+              "Type": 1,
+              "Address": "\"ProjectN-Win64-Shipping.exe\"+67CDCA0",
+              "IsPointer": true,
+              "Offsets": [
+                {
+                  "$type": "ItemOffset",
+                  "Offset": "0xDE8"
+                },
+                {
+                  "$type": "ItemOffset",
+                  "Offset": "0x38"
+                },
+                {
+                  "$type": "ItemOffset",
+                  "Offset": "0x0"
+                },
+                {
+                  "$type": "ItemOffset",
+                  "Offset": "0x30"
+                },
+                {
+                  "$type": "ItemOffset",
+                  "Offset": "0x260"
+                },
+                {
+                  "$type": "ItemOffset",
+                  "Offset": "0x5C"
+                }
+              ],
+              "Length": 0,
+              "Description": "Disable Collisions - 68 OFF 64 ON",
+              "Hotkeys": [],
+              "Children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$type": "AddressItem",
+      "Type": 7,
+      "Address": "ProjectN-Win64-Shipping.exe+67CDCA0",
+      "IsPointer": true,
+      "Offsets": [
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x788"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x80"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x1A8"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x8"
+        },
+        {
+          "$type": "ItemOffset",
+          "Offset": "0x518"
+        }
+      ],
+      "Length": 0,
+      "Description": "Skip Attack Anim",
+      "Hotkeys": [],
+      "Children": []
+    },
+    {
+      "$type": "GroupItem",
+      "Description": "NO CLIP (Beta, pode ter alguns bugs, relate-os para mim.)",
+      "Hotkeys": [],
+      "Children": [
+        {
+          "$type": "AddressItem",
+          "Type": 1,
+          "Address": "\"ProjectN-Win64-Shipping.exe\"+67CDCA0",
+          "IsPointer": true,
+          "Offsets": [
+            {
+              "$type": "ItemOffset",
+              "Offset": "0xDE8"
+            },
+            {
+              "$type": "ItemOffset",
+              "Offset": "0x38"
+            },
+            {
+              "$type": "ItemOffset",
+              "Offset": "0x0"
+            },
+            {
+              "$type": "ItemOffset",
+              "Offset": "0x30"
+            },
+            {
+              "$type": "ItemOffset",
+              "Offset": "0x260"
+            },
+            {
+              "$type": "ItemOffset",
+              "Offset": "0x288"
+            },
+            {
+              "$type": "ItemOffset",
+              "Offset": "0x168"
+            }
+          ],
+          "Length": 0,
+          "Description": "Movement Mode - 1 OFF 5 ON",
+          "Hotkeys": [],
+          "Children": []
+        },
+        {
+          "$type": "AddressItem",
+          "Type": 1,
+          "Address": "\"ProjectN-Win64-Shipping.exe\"+67CDCA0",
+          "IsPointer": true,
+          "Offsets": [
+            {
+              "$type": "ItemOffset",
+              "Offset": "0xDE8"
+            },
+            {
+              "$type": "ItemOffset",
+              "Offset": "0x38"
+            },
+            {
+              "$type": "ItemOffset",
+              "Offset": "0x0"
+            },
+            {
+              "$type": "ItemOffset",
+              "Offset": "0x30"
+            },
+            {
+              "$type": "ItemOffset",
+              "Offset": "0x260"
+            },
+            {
+              "$type": "ItemOffset",
+              "Offset": "0x5C"
+            }
+          ],
+          "Length": 0,
+          "Description": "Disable Collisions - 68 OFF 64 ON",
+          "Hotkeys": [],
+          "Children": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+﻿Dark Byte
+---------------
+- Speedhack:
+CoSMOS uses the same calculation method in its speedhack function.
+- Script Engine:
+CoSMOS uses a very close syntax for script injection merely to provide interoperability and compatibility with Dark Byte's open source cheat tables.
+- VEH Debugger:
+The core debugger is completely self written in C# but Dark Byte's source code was a great help with that. Additionally CoSMOS uses the same inter-process communication of Dark Byte's VEH.

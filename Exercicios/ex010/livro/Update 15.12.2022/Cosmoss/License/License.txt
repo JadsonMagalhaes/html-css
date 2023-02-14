@@ -1,0 +1,32 @@
+CoSMOS License Information
+
+
+RecursiveChangeNotifier is licensed under the MIT.
+Authors: Wonka, Victor Milovanov, Thomas Jaworski
+
+Mono Cecil is licensed under the MIT.
+Copyright (c) 2008 - 2015 Jb Evain
+Copyright (c) 2008 - 2011 Novell, Inc.
+
+ILSpy is licensed under the MIT.
+Copyright 2011-2016 AlphaSierraPapa for the SharpDevelop team
+
+Newtonsoft JSON is licensed under the MIT.
+Copyright (c) 2007 James Newton-King
+
+dnlib is licensed under the MIT.
+Copyright (C) 2012-2018 de4dot@gmail.com
+
+Iced is licensed under the MIT
+Copyright (c) 2018-2019, 0xd4d
+
+Neolua is licensed under the Apache License 2.0.
+Copyright (c) 2013-2018 neolithos.
+
+UWPDumper is licensed under the MIT.
+Copyright (c) 2017 wunkolo.
+
+
+CoSMOS
+Copyright(C) 2018-2019, cheathappens.com
+All rights reserved except as specified above.

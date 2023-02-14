@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>LuaTimer</Title>
+      <Shortcut>luatimer</Shortcut>
+      <Description>Builds a snippet for using a timer in lua</Description>
+      <Author>Cheat Happens</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>timer</ID>
+          <Default>timer</Default>
+          <ToolTip>Timer variable name (unless declared local needs to be unique)</ToolTip>
+        </Literal>
+      </Declarations>
+      <Code Language="CheatTable">
+        <![CDATA[local function Tick(nil)
+	-- timer action here
+end
+$timer$ = createTimer() -- declare local if you dont want to access the timer in a second lua section.
+$timer$.Interval = 100
+$timer$.OnTimer = Tick
+$timer$.Enabled = true
+--[[ 
+	dont forget calling $timer$:destroy() to end the timer.
+	You might want to call it in [DISABLE] section instead.
+--]]
+$timer$:destroy()
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

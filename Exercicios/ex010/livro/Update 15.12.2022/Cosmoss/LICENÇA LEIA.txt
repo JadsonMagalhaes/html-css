@@ -1,0 +1,10 @@
+TERMOS DE USO E LICENÇA
+
+1° Não remova o arquivo licença.php do seu computador, pois o sistema me notifica e pode sinalizar a sua conta e você tomar ban.
+2° A licença ela fica vinculada ao seu HWID então a mesma é unica e exclusiva para você, não compartilhe os arquivos.
+3° Caso você divulgue para algum amigo mesmo removendo o arquivo "licença" somos notificados que mais de 1 computador está usando o produto, e vamos sinalizar a sua conta e você será banido e futuros.
+4° E caso ocorra o reembolso do produto, vamos ter que sinalizar os seus logs para a empresa e de futuros usos.
+5° Caso você excluiu por acidente o arquivo licença.php, entre em contato  conosco, para que possamos resetar o arquivo em nosso sistema.
+
+OBS1: Caso seja compartilhado o sistema vai identificar e e sinalizar a sua conta para o jogo e o novo pc a qual você compartilhou.
+OBS2: Se você quiser liberar em um novo computador entre em contato.

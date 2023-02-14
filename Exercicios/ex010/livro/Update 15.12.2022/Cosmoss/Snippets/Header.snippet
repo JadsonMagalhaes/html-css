@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Header</Title>
+      <Shortcut>header</Shortcut>
+      <Description>Builds a description header</Description>
+      <Author>Cheat Happens</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>CURRENT_TARGETPROCESS</ID>
+          <Default>$CURRENT_TARGETPROCESS$</Default>
+          <ToolTip>Target process, will be replaced automatically if not changed</ToolTip>
+        </Literal>
+        <Literal>
+          <ID>CURRENT_DATE</ID>
+          <Default>$CURRENT_DATE$</Default>
+          <ToolTip>Current date, will be replaced automatically if not changed</ToolTip>
+        </Literal>
+        <Literal>
+          <ID>CURRENT_USER</ID>
+          <Default>$CURRENT_USER$</Default>
+          <ToolTip>Author, will be replaced automatically if not changed</ToolTip>
+        </Literal>
+        <Literal>
+          <ID>description</ID>
+          <Default>This script does something the author was too lazy to describe</Default>
+          <ToolTip>Description</ToolTip>
+        </Literal>
+      </Declarations>
+      <Code Language="CheatTable">
+        <![CDATA[{ Game   : $CURRENT_TARGETPROCESS$
+  Version: 1.0
+  Date   : $CURRENT_DATE$
+  Author : $CURRENT_USER$
+
+  $description$
+}
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
